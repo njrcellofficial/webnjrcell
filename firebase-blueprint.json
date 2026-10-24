@@ -1,0 +1,160 @@
+{
+  "entities": {
+    "Slide": {
+      "title": "Slide",
+      "description": "Promotional slideshow banner item managed by NJR CELL admins and displayed on the homepage.",
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "Headline title of the promotional slide.",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "subtitle": {
+          "type": "string",
+          "description": "Caption or description text explaining the promo.",
+          "minLength": 1,
+          "maxLength": 300
+        },
+        "category": {
+          "type": "string",
+          "description": "Category tab for filtering on the homepage.",
+          "enum": ["Keuangan", "Digital", "Aksesori", "Info"]
+        },
+        "buttonText": {
+          "type": "string",
+          "description": "Label text displayed inside the CTA button.",
+          "minLength": 1,
+          "maxLength": 60
+        },
+        "targetUrl": {
+          "type": "string",
+          "description": "Validated https/http destination URL when the CTA button is clicked.",
+          "minLength": 1,
+          "maxLength": 500,
+          "pattern": "^https?://.+"
+        },
+        "imageUrl": {
+          "type": "string",
+          "description": "Image source URL (local asset path, Firebase Storage download URL, or optimized WebP/JPEG data URL).",
+          "minLength": 1,
+          "maxLength": 350000
+        },
+        "storagePath": {
+          "type": "string",
+          "description": "Firebase Storage path if uploaded to Cloud Storage (empty string if local or inline optimized image).",
+          "minLength": 0,
+          "maxLength": 300
+        },
+        "alt": {
+          "type": "string",
+          "description": "Accessible alt text for the banner image.",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "order": {
+          "type": "number",
+          "description": "Display sort order (ascending integer from 1 to 999)."
+        },
+        "status": {
+          "type": "string",
+          "description": "Lifecycle status of the slide.",
+          "enum": ["Draft", "Scheduled", "Published", "Expired", "Archived"]
+        },
+        "startAt": {
+          "type": "string",
+          "description": "ISO-8601 timestamp string for scheduled start time, or empty string for immediate.",
+          "minLength": 0,
+          "maxLength": 40
+        },
+        "endAt": {
+          "type": "string",
+          "description": "ISO-8601 timestamp string for scheduled expiration time, or empty string for no expiration.",
+          "minLength": 0,
+          "maxLength": 40
+        },
+        "authorUid": {
+          "type": "string",
+          "description": "UID of the admin who created the slide.",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp when the slide was created."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp when the slide was last updated."
+        }
+      },
+      "required": [
+        "title",
+        "subtitle",
+        "category",
+        "buttonText",
+        "targetUrl",
+        "imageUrl",
+        "storagePath",
+        "alt",
+        "order",
+        "status",
+        "startAt",
+        "endAt",
+        "authorUid",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "AdminProfile": {
+      "title": "AdminProfile",
+      "description": "Authorized NJR CELL administrator record.",
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string",
+          "description": "Firebase Auth UID of the administrator.",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "role": {
+          "type": "string",
+          "description": "Role identifier.",
+          "enum": ["admin"]
+        },
+        "addedByUid": {
+          "type": "string",
+          "description": "UID of the admin who granted access.",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp when admin access was granted."
+        }
+      },
+      "required": ["uid", "role", "addedByUid", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/slides/{slideId}": {
+      "schema": {
+        "$ref": "#/entities/Slide"
+      },
+      "description": "Promotional slideshow banners. Public visitors may only read documents where status == 'Published'. Only verified admins may read non-published slides or create/update/delete slides."
+    },
+    "/admins/{adminId}": {
+      "schema": {
+        "$ref": "#/entities/AdminProfile"
+      },
+      "description": "Authorized administrator registry. Strictly readable and writable only by verified admins."
+    }
+  }
+}

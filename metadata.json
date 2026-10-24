@@ -1,0 +1,6 @@
+{
+  "name": "NJR CELL — Layanan Digital, Transfer Bank & Aksesori HP Ciamis",
+  "description": "Pusat layanan digital 24 jam, Mandiri Agen, Agen BRILink (Kode Agen: 12400836), transfer bank, tarik tunai, pulsa, paket data, token PLN, pembayaran tagihan PPOB, hydrogel, dan aksesori HP di Sukajadi (Pamarican) & Ciherang (Banjarsari), Kabupaten Ciamis.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
