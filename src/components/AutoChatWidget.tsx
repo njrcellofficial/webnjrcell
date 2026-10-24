@@ -11,7 +11,6 @@ import {
   RotateCcw,
   ExternalLink,
   ChevronRight,
-  Headphones,
   Check,
   Zap,
 } from 'lucide-react';
@@ -323,16 +322,12 @@ export const AutoChatWidget: React.FC = () => {
           <div className="bg-gradient-to-r from-[#112416] via-[#17301E] to-[#112416] border-b border-[#24382B] p-3.5 flex items-center justify-between text-white shrink-0">
             <div className="flex items-center gap-2.5">
               <div className="relative">
-                <div className="w-10 h-10 rounded-full bg-[#1A3320] border border-[#39FF14]/50 flex items-center justify-center overflow-hidden">
+                <div className="w-10 h-10 rounded-full bg-[#111613] border border-[#39FF14]/50 flex items-center justify-center overflow-hidden p-0.5">
                   <img
                     src={BRAND_INFO.logoPath}
-                    alt="NJR CELL Logo"
-                    className="w-8 h-8 object-contain"
-                    onError={(e) => {
-                      (e.target as HTMLElement).style.display = 'none';
-                    }}
+                    alt="Logo NJR CELL"
+                    className="w-full h-full object-contain rounded-full"
                   />
-                  <Headphones className="w-5 h-5 text-[#39FF14]" />
                 </div>
                 <span className="absolute bottom-0 right-0 w-3 h-3 bg-[#39FF14] border-2 border-[#112416] rounded-full"></span>
               </div>

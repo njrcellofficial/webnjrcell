@@ -23,7 +23,6 @@ import {
   Menu,
   X,
   FileText,
-  ClipboardCheck,
   AlertTriangle,
   RefreshCw,
   HelpCircle,
@@ -49,7 +48,6 @@ import { PromoSlideshow } from './components/PromoSlideshow';
 import {
   WhatsAppSelectorModal,
   TermsModal,
-  AuditModal,
 } from './components/Modals';
 import { AutoChatWidget } from './components/AutoChatWidget';
 
@@ -58,7 +56,6 @@ export default function App() {
   const [waModalOpen, setWaModalOpen] = useState(false);
   const [waModalTopic, setWaModalTopic] = useState('umum');
   const [termsModalOpen, setTermsModalOpen] = useState(false);
-  const [auditModalOpen, setAuditModalOpen] = useState(false);
   const [adminModalOpen, setAdminModalOpen] = useState(false);
   const [copiedAccountId, setCopiedAccountId] = useState<string | null>(null);
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
@@ -144,12 +141,18 @@ export default function App() {
       {/* 1. HEADER — Strict 3-Zone Top Bar Contract */}
       <header className="sticky top-0 z-40 glass-surface border-b border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-8">
-          {/* Zone 1: Brand Wordmark */}
+          {/* Zone 1: Brand Wordmark & Official 3D Logo */}
           <a
             href="#beranda"
-            className="text-lg sm:text-xl font-extrabold tracking-tight text-[#F3F7F4] hover:text-[#39FF14] transition-colors whitespace-nowrap shrink-0"
+            className="flex items-center gap-2.5 transition-all hover:opacity-95 whitespace-nowrap shrink-0 group py-1"
+            title="NJR CELL — Kembali ke Beranda"
           >
-            NJR CELL
+            <img
+              src="/assets/aistudio/Logo_NJR_CELL_Neon_Hijau_4282a177.png"
+              alt="Logo Resmi NJR CELL"
+              className="h-9 sm:h-10.5 w-auto object-contain transition-transform group-hover:scale-105 filter drop-shadow-[0_2px_10px_rgba(0,0,0,0.6)]"
+            />
+            <span className="sr-only">NJR CELL</span>
           </a>
 
           {/* Zone 2: 5 Concise Single-Line Navigation Links */}
@@ -312,13 +315,13 @@ export default function App() {
                   <div className="flex items-center gap-3.5 mb-5">
                     {!imgErrors['logo'] ? (
                       <img
-                        src={BRAND_INFO.logoPath}
+                        src="/assets/aistudio/Logo_NJR_CELL_Neon_Hijau_4282a177.png"
                         alt="Logo Resmi NJR CELL"
                         referrerPolicy="no-referrer"
                         onError={() =>
                           setImgErrors((prev) => ({ ...prev, logo: true }))
                         }
-                        className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl object-contain bg-[#111613] p-1.5 border border-[#39FF14]/40 shrink-0"
+                        className="w-20 sm:w-24 h-14 sm:h-16 rounded-2xl object-contain bg-[#111613] p-1.5 border border-[#39FF14]/40 shrink-0"
                       />
                     ) : (
                       <div className="w-14 h-14 rounded-2xl bg-[#39FF14]/15 border border-[#39FF14]/40 flex items-center justify-center font-extrabold text-lg text-[#39FF14] shrink-0">
@@ -1653,16 +1656,6 @@ export default function App() {
                 <li>
                   <button
                     type="button"
-                    onClick={() => setAuditModalOpen(true)}
-                    className="text-[#39FF14] hover:underline font-semibold flex items-center gap-1.5 cursor-pointer"
-                  >
-                    <ClipboardCheck className="w-3.5 h-3.5" />
-                    <span>Laporan Audit & Verifikasi</span>
-                  </button>
-                </li>
-                <li>
-                  <button
-                    type="button"
                     onClick={() => setAdminModalOpen(true)}
                     className="text-[#A3B3A8] hover:text-[#39FF14] font-semibold flex items-center gap-1.5 cursor-pointer transition-colors"
                   >
@@ -1692,11 +1685,6 @@ export default function App() {
       <TermsModal
         isOpen={termsModalOpen}
         onClose={() => setTermsModalOpen(false)}
-      />
-
-      <AuditModal
-        isOpen={auditModalOpen}
-        onClose={() => setAuditModalOpen(false)}
       />
 
       {/* Floating Auto-Chat & WhatsApp Transaction Router */}

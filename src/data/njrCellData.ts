@@ -59,7 +59,7 @@ export const BRAND_INFO = {
   heroHeadline: 'Solusi Transaksi Digital, Transfer Bank & Kebutuhan HP dalam Satu Konter.',
   heroSubheadline:
     'Melayani masyarakat Pamarican dan Banjarsari dengan jelas, ramah, dan aman. Beli pulsa, kuota, token PLN online 24 jam, atau datang langsung ke konter untuk tarik tunai, Mandiri Agen, Agen BRILink (Kode: 12400836), pasang hydrogel, garskin custom, hingga minuman dingin & es krim.',
-  logoPath: '/img/njrcell.png',
+  logoPath: '/img/njrcell-logo.png',
   brilinkAgentCode: '12400836',
   generalWhatsappDisplay: '0821-2000-0303',
   generalWhatsappRaw: '6282120000303',

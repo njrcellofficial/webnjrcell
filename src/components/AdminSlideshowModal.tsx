@@ -37,6 +37,7 @@ import {
   ShieldCheck,
   HelpCircle,
   Play,
+  ClipboardCheck,
 } from 'lucide-react';
 import {
   auth,
@@ -60,6 +61,7 @@ import {
   deleteSlideImageIfUnused,
   validateSlideDocSize,
 } from '../utils/slideHelper';
+import { AuditModal } from './Modals';
 
 interface AdminSlideshowModalProps {
   isOpen: boolean;
@@ -103,6 +105,7 @@ export const AdminSlideshowModal: React.FC<AdminSlideshowModalProps> = ({
   } | null>(null);
   const [isBusy, setIsBusy] = useState(false);
   const [showSetupGuide, setShowSetupGuide] = useState(false);
+  const [showAuditModal, setShowAuditModal] = useState(false);
   const [newAdminUidInput, setNewAdminUidInput] = useState('');
 
   // Slide Editor Form State
@@ -1076,6 +1079,15 @@ export const AdminSlideshowModal: React.FC<AdminSlideshowModalProps> = ({
 
                   <button
                     type="button"
+                    onClick={() => setShowAuditModal(true)}
+                    className="inline-flex items-center gap-1.5 px-3.5 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-[#39FF14] font-semibold text-xs border border-[#39FF14]/30 transition-colors cursor-pointer"
+                  >
+                    <ClipboardCheck className="w-3.5 h-3.5 text-[#39FF14]" />
+                    <span>Laporan Audit & Verifikasi</span>
+                  </button>
+
+                  <button
+                    type="button"
                     onClick={() => setShowSetupGuide((g) => !g)}
                     className="inline-flex items-center gap-1.5 px-3.5 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-[#D1DDD5] font-semibold text-xs border border-white/10 transition-colors cursor-pointer"
                   >
@@ -1830,6 +1842,14 @@ export const AdminSlideshowModal: React.FC<AdminSlideshowModalProps> = ({
               </div>
             </div>
           </div>
+        )}
+
+        {/* Admin-Only Audit & Verification Modal */}
+        {isAuthorizedAdmin && (
+          <AuditModal
+            isOpen={showAuditModal}
+            onClose={() => setShowAuditModal(false)}
+          />
         )}
       </div>
     </div>
