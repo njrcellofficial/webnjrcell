@@ -33,6 +33,7 @@ export interface PaymentAccount {
   id: string;
   provider: string;
   category: 'Bank' | 'E-Wallet';
+  logoPath: string;
   displayNumber: string;
   rawNumber: string;
   accountHolder: string;
@@ -315,6 +316,7 @@ export const PAYMENT_ACCOUNTS: PaymentAccount[] = [
     id: 'mandiri',
     provider: 'Bank Mandiri',
     category: 'Bank',
+    logoPath: '/img/logo-mandiri.svg',
     displayNumber: '1770 0065 9439 1',
     rawNumber: '1770006594391',
     accountHolder: 'AMIR NURJAMAN',
@@ -324,6 +326,7 @@ export const PAYMENT_ACCOUNTS: PaymentAccount[] = [
     id: 'bri',
     provider: 'Bank BRI',
     category: 'Bank',
+    logoPath: '/assets/aistudio/BRI_2025_6750d0ed.png',
     displayNumber: '4013 0100 9880 537',
     rawNumber: '401301009880537',
     accountHolder: 'AMIR NURJAMAN',
@@ -333,6 +336,7 @@ export const PAYMENT_ACCOUNTS: PaymentAccount[] = [
     id: 'seabank',
     provider: 'SeaBank',
     category: 'Bank',
+    logoPath: '/img/logo-seabank.png',
     displayNumber: '9011 4590 5769',
     rawNumber: '901145905769',
     accountHolder: 'AMIR NURJAMAN',
@@ -342,15 +346,27 @@ export const PAYMENT_ACCOUNTS: PaymentAccount[] = [
     id: 'dana',
     provider: 'DANA',
     category: 'E-Wallet',
+    logoPath: '/img/logo-dana.svg',
     displayNumber: '0821 2000 0303',
     rawNumber: '082120000303',
     accountHolder: 'AMIR NURJAMAN',
     verifiedSource: 'njrcell.web.id',
   },
   {
+    id: 'dana-ciherang',
+    provider: 'DANA',
+    category: 'E-Wallet',
+    logoPath: '/img/logo-dana.svg',
+    displayNumber: '0831 2000 0303',
+    rawNumber: '083120000303',
+    accountHolder: 'AHMAD SIDIK',
+    verifiedSource: 'njrcell.web.id',
+  },
+  {
     id: 'shopeepay',
     provider: 'ShopeePay',
     category: 'E-Wallet',
+    logoPath: '/img/logo-shopee.svg',
     displayNumber: '0821 2000 0303',
     rawNumber: '082120000303',
     accountHolder: 'AMIR NURJAMAN',

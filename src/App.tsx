@@ -1062,7 +1062,7 @@ export default function App() {
                         Atas Nama Rekening & E-Wallet Resmi:
                       </p>
                       <p className="text-lg sm:text-xl font-extrabold text-[#39FF14] tracking-wide">
-                        a.n. AMIR NURJAMAN
+                        a.n. AMIR NURJAMAN / AHMAD SIDIK
                       </p>
                     </div>
                     <span className="text-xs text-[#A3B3A8]">
@@ -1076,21 +1076,33 @@ export default function App() {
                       return (
                         <div
                           key={acc.id}
-                          className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-4 rounded-xl bg-[#161D19] border border-white/10 hover:border-[#39FF14]/40 transition-colors"
+                          className="flex flex-col sm:flex-row sm:items-center justify-between gap-3.5 p-4 rounded-xl bg-[#161D19] border border-white/10 hover:border-[#39FF14]/40 transition-colors"
                         >
-                          <div>
-                            <div className="flex items-center gap-2 text-xs text-[#A3B3A8]">
-                              <span className="font-bold text-[#F3F7F4] text-sm">
-                                {acc.provider}
-                              </span>
-                              <span aria-hidden="true">·</span>
-                              <span>{acc.category}</span>
-                              <span aria-hidden="true">·</span>
-                              <span>a.n. {acc.accountHolder}</span>
+                          <div className="flex items-center gap-3.5">
+                            <div className="w-20 sm:w-24 h-12 rounded-xl bg-white p-2 border border-white/20 shadow-sm flex items-center justify-center shrink-0">
+                              <img
+                                src={acc.logoPath}
+                                alt={`Logo ${acc.provider}`}
+                                loading="lazy"
+                                className="max-w-full max-h-full object-contain"
+                              />
                             </div>
-                            <p className="font-mono-num text-lg sm:text-xl font-bold text-[#F3F7F4] mt-1 tracking-wider">
-                              {acc.displayNumber}
-                            </p>
+                            <div>
+                              <div className="flex flex-wrap items-center gap-x-2 gap-y-0.5 text-xs text-[#A3B3A8]">
+                                <span className="font-bold text-[#F3F7F4] text-sm">
+                                  {acc.provider}
+                                </span>
+                                <span aria-hidden="true">·</span>
+                                <span>{acc.category}</span>
+                                <span aria-hidden="true">·</span>
+                                <span className="text-[#39FF14] font-semibold">
+                                  a.n. {acc.accountHolder}
+                                </span>
+                              </div>
+                              <p className="font-mono-num text-lg sm:text-xl font-bold text-[#F3F7F4] mt-1 tracking-wider">
+                                {acc.displayNumber}
+                              </p>
+                            </div>
                           </div>
 
                           <button
@@ -1128,7 +1140,7 @@ export default function App() {
                   </p>
                   <ul className="list-disc list-inside space-y-1 text-xs text-[#D1DDD5]">
                     <li>Simpan bukti transfer untuk mempercepat proses pengambilan tunai di konter.</li>
-                    <li>Nomor rekening resmi NJR CELL hanya yang tercantum di halaman resmi ini (a.n. AMIR NURJAMAN).</li>
+                    <li>Nomor rekening & e-wallet resmi NJR CELL hanya yang tercantum di halaman resmi ini (a.n. AMIR NURJAMAN & DANA 0831-2000-0303 a.n. AHMAD SIDIK).</li>
                     <li>Abaikan jika ada pihak lain yang mengaku dari NJR CELL dengan nomor rekening berbeda.</li>
                   </ul>
                 </div>
