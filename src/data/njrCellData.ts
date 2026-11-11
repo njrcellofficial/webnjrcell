@@ -59,7 +59,7 @@ export const BRAND_INFO = {
   tagline: 'Layanan Digital, Transfer Bank, Tarik Tunai, Mandiri Agen & BRILink Terpercaya di Ciamis',
   heroHeadline: 'Solusi Transaksi Digital, Transfer Bank & Kebutuhan HP dalam Satu Konter.',
   heroSubheadline:
-    'Melayani masyarakat Pamarican dan Banjarsari dengan jelas, ramah, dan aman. Beli pulsa, kuota, token PLN online 24 jam, atau datang langsung ke konter untuk tarik tunai, Agen Mandiri (Kode: 2407196), Agen BRILink (Kode: 12400836), Jaringan BERSAMA, pasang hydrogel, garskin custom, hingga minuman dingin & es krim.',
+    'NJR CELL (NJRCELL) melayani masyarakat Pamarican dan Banjarsari dengan jelas, ramah, dan aman. Beli pulsa, kuota, token PLN online 24 jam, atau datang langsung ke konter untuk tarik tunai, Agen Mandiri (Kode: 2407196), Agen BRILink (Kode: 12400836), Jaringan BERSAMA, pasang hydrogel, garskin custom, hingga minuman dingin & es krim.',
   logoPath: '/img/njrcell-logo.png',
   mandiriAgentCode: '2407196',
   brilinkAgentCode: '12400836',
@@ -433,7 +433,7 @@ export const FAQ_ITEMS = [
   {
     question: 'Saya kurang paham cara transfer atau bayar lewat HP, apakah bisa dibantu langsung?',
     answer:
-      'Tentu bisa! Anda cukup datang langsung ke konter NJR CELL Sukajadi (Pamarican, sekitar MAN 4 Ciamis) atau NJR CELL Ciherang (Banjarsari, dekat SD 1 Ciherang). Petugas kami akan membantu proses transfer, tarik tunai, layanan Agen Mandiri (Kode: 2407196), BRILink (Kode: 12400836), Jaringan BERSAMA, pengisian kuota, maupun pembayaran tagihan dari awal sampai selesai dengan ramah dan jelas.',
+      'Tentu bisa! Anda cukup datang langsung ke konter resmi NJR CELL (NJRCELL) cabang Sukajadi (Pamarican, sekitar MAN 4 Ciamis) atau cabang Ciherang (Banjarsari, dekat SD 1 Ciherang). Petugas kami akan membantu proses transfer, tarik tunai, layanan Agen Mandiri (Kode: 2407196), BRILink (Kode: 12400836), Jaringan BERSAMA, pengisian kuota, maupun pembayaran tagihan dari awal sampai selesai dengan ramah dan jelas.',
   },
   {
     question: 'Bagaimana prosedur tarik tunai dari rekening atau e-wallet di NJR CELL?',

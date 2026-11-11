@@ -518,7 +518,7 @@ export function App() {
             <h1
               id="hero-title"
               className="ojb-hero-title"
-              aria-label="Semua kebutuhan digital. Satu tempat."
+              aria-label="NJR CELL (NJRCELL) — Semua kebutuhan digital. Satu tempat."
             >
               <span className="ojb-hl">SEMUA KEBUTUHAN</span>
               <span className="ojb-hl">DIGITAL.</span>
@@ -1790,7 +1790,7 @@ export function App() {
               </span>
             </a>
             <p className="text-sm text-[#8EA394] max-w-sm leading-relaxed">
-              Solusi transaksi keuangan, pembayaran digital, internet, aksesoris dan kebutuhan harian Anda di Pamarican &amp; Banjarsari, Ciamis.
+              NJR CELL (NJRCELL) — Solusi transaksi keuangan, pembayaran digital, internet, aksesoris dan kebutuhan harian Anda di Ciherang (Banjarsari) &amp; Sukajadi (Pamarican), Ciamis.
             </p>
             <div className="flex flex-wrap gap-2 pt-1">
               <a
