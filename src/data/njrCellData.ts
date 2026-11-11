@@ -59,9 +59,11 @@ export const BRAND_INFO = {
   tagline: 'Layanan Digital, Transfer Bank, Tarik Tunai, Mandiri Agen & BRILink Terpercaya di Ciamis',
   heroHeadline: 'Solusi Transaksi Digital, Transfer Bank & Kebutuhan HP dalam Satu Konter.',
   heroSubheadline:
-    'Melayani masyarakat Pamarican dan Banjarsari dengan jelas, ramah, dan aman. Beli pulsa, kuota, token PLN online 24 jam, atau datang langsung ke konter untuk tarik tunai, Mandiri Agen, Agen BRILink (Kode: 12400836), pasang hydrogel, garskin custom, hingga minuman dingin & es krim.',
+    'Melayani masyarakat Pamarican dan Banjarsari dengan jelas, ramah, dan aman. Beli pulsa, kuota, token PLN online 24 jam, atau datang langsung ke konter untuk tarik tunai, Agen Mandiri (Kode: 2407196), Agen BRILink (Kode: 12400836), Jaringan BERSAMA, pasang hydrogel, garskin custom, hingga minuman dingin & es krim.',
   logoPath: '/img/njrcell-logo.png',
+  mandiriAgentCode: '2407196',
   brilinkAgentCode: '12400836',
+  atmNetwork: 'Jaringan BERSAMA',
   generalWhatsappDisplay: '0821-2000-0303',
   generalWhatsappRaw: '6282120000303',
   generalWhatsappUrl:
@@ -395,8 +397,8 @@ export const OUTLETS: OutletInfo[] = [
     mapsUrl: 'https://maps.app.goo.gl/kwNbie566DpopYBGA',
     mapPreviewImage: '/img/njrsukajadi.png',
     servicesAvailable: [
-      'Transfer Bank & Tarik Tunai',
-      'Mandiri Agen & Agen BRILink Resmi (Kode: 12400836)',
+      'Transfer Bank & Tarik Tunai (Jaringan BERSAMA)',
+      'Terdaftar Resmi Agen Mandiri (Kode: 2407196) & BRILink (Kode: 12400836)',
       'Pulsa, Paket Data, Kartu Perdana & Voucher Fisik',
       'Token PLN & Pembayaran Tagihan PPOB',
       'Pelindung Layar Hydrogel, Garskin & Aksesori HP',
@@ -417,8 +419,8 @@ export const OUTLETS: OutletInfo[] = [
     mapsUrl: 'https://maps.app.goo.gl/m4d9JoxcXCYds6ep6',
     mapPreviewImage: '/img/njrciherang.png',
     servicesAvailable: [
-      'Transfer Bank & Tarik Tunai',
-      'Mandiri Agen & Agen BRILink Resmi (Kode: 12400836)',
+      'Transfer Bank & Tarik Tunai (Jaringan BERSAMA)',
+      'Terdaftar Resmi Agen Mandiri (Kode: 2407196) & BRILink (Kode: 12400836)',
       'Pulsa, Paket Data, Kartu Perdana & Voucher Fisik',
       'Token PLN & Pembayaran Tagihan PPOB',
       'Pelindung Layar Hydrogel, Garskin Custom & Aksesori HP',
@@ -431,7 +433,7 @@ export const FAQ_ITEMS = [
   {
     question: 'Saya kurang paham cara transfer atau bayar lewat HP, apakah bisa dibantu langsung?',
     answer:
-      'Tentu bisa! Anda cukup datang langsung ke konter NJR CELL Sukajadi (Pamarican, sekitar MAN 4 Ciamis) atau NJR CELL Ciherang (Banjarsari, dekat SD 1 Ciherang). Petugas kami akan membantu proses transfer, tarik tunai, layanan Mandiri Agen, BRILink (Kode Agen: 12400836), pengisian kuota, maupun pembayaran tagihan dari awal sampai selesai dengan ramah dan jelas.',
+      'Tentu bisa! Anda cukup datang langsung ke konter NJR CELL Sukajadi (Pamarican, sekitar MAN 4 Ciamis) atau NJR CELL Ciherang (Banjarsari, dekat SD 1 Ciherang). Petugas kami akan membantu proses transfer, tarik tunai, layanan Agen Mandiri (Kode: 2407196), BRILink (Kode: 12400836), Jaringan BERSAMA, pengisian kuota, maupun pembayaran tagihan dari awal sampai selesai dengan ramah dan jelas.',
   },
   {
     question: 'Bagaimana prosedur tarik tunai dari rekening atau e-wallet di NJR CELL?',
@@ -466,7 +468,7 @@ export const TERMS_AND_CONDITIONS = [
     title: 'Layanan NJR CELL',
     points: [
       'NJR CELL menyediakan layanan pulsa, paket data, token PLN, pembayaran tagihan, top-up game, dan e-wallet.',
-      'Layanan offline (aksesori, hydrogel, garskin, kartu perdana, produk konter, Mandiri Agen, Agen BRILink Kode 12400836, serta layanan transfer & tarik tunai) tersedia di konter Sukajadi & Ciherang.',
+      'Layanan offline (aksesori, hydrogel, garskin, kartu perdana, produk konter, Agen Mandiri Kode 2407196, Agen BRILink Kode 12400836, Jaringan BERSAMA, serta layanan transfer & tarik tunai) tersedia di konter Sukajadi & Ciherang.',
     ],
   },
   {
@@ -551,9 +553,9 @@ export const AUDIT_REPORT_SUMMARY = {
   ],
   itemsNeedingOwnerConfirmation: [
     {
-      item: 'Agen BRILink Resmi (SUDAH DITAMBAHKAN)',
+      item: 'Agen Mandiri & BRILink Resmi (SUDAH DITAMBAHKAN)',
       detail:
-        'Telah ditambahkan identitas resmi Agen BRILink NJR CELL dengan Kode Agen: 12400836 berdampingan dengan Mandiri Agen.',
+        'Terdaftar resmi Agen Mandiri (Kode: 2407196) & BRILink (Kode: 12400836) · Jaringan BERSAMA.',
     },
     {
       item: 'Alamat & Patokan Outlet Ciherang (SUDAH DIPERBARUI)',
@@ -567,3 +569,524 @@ export const AUDIT_REPORT_SUMMARY = {
     },
   ],
 };
+
+export type ServiceCategoryId =
+  | 'keuangan'
+  | 'digital'
+  | 'pembayaran'
+  | 'aksesori'
+  | 'kebutuhan-harian';
+
+export interface ServiceCategoryMeta {
+  id: ServiceCategoryId;
+  code: string;
+  name: string;
+  shortTitle: string;
+  description: string;
+  highlights: string[];
+  iconName: 'Landmark' | 'Smartphone' | 'Receipt' | 'ShieldCheck' | 'ShoppingBag';
+}
+
+export interface ServiceCatalogItem {
+  id: string;
+  categoryId: ServiceCategoryId;
+  categoryLabel: string;
+  title: string;
+  description: string;
+  availability: string;
+  keywords: string[];
+  actionType: 'wa' | 'external' | 'scroll';
+  actionTarget: string;
+  actionLabel: string;
+  iconName:
+    | 'Banknote'
+    | 'Wallet'
+    | 'Building2'
+    | 'Landmark'
+    | 'CreditCard'
+    | 'Smartphone'
+    | 'Wifi'
+    | 'Ticket'
+    | 'Zap'
+    | 'Gamepad2'
+    | 'Receipt'
+    | 'FileText'
+    | 'ShieldCheck'
+    | 'Plug'
+    | 'Layers'
+    | 'SimCard'
+    | 'IceCreamCone'
+    | 'CupSoda'
+    | 'PackageCheck';
+}
+
+export const SERVICE_CATEGORIES: ServiceCategoryMeta[] = [
+  {
+    id: 'keuangan',
+    code: 'A. KEUANGAN',
+    name: 'Layanan Keuangan & Agen Bank',
+    shortTitle: 'Keuangan',
+    description:
+      'Solusi transaksi perbankan lengkap dekat rumah: transfer antarbank, top-up e-wallet, tarik tunai transparan, serta terdaftar resmi Agen Mandiri (Kode: 2407196) & BRILink (Kode: 12400836) · Jaringan BERSAMA.',
+    highlights: [
+      'Transfer antarbank',
+      'Transfer e-wallet',
+      'Tarik tunai',
+      'Agen Mandiri (Kode: 2407196)',
+      'BRILink (Kode: 12400836) · Jaringan BERSAMA',
+    ],
+    iconName: 'Landmark',
+  },
+  {
+    id: 'digital',
+    code: 'B. DIGITAL',
+    name: 'Produk Digital & TopUp 24 Jam',
+    shortTitle: 'Digital',
+    description:
+      'Kebutuhan komunikasi, hiburan, dan listrik prabayar: pulsa semua operator, paket data, voucher internet, token listrik PLN, dan top-up game favorit.',
+    highlights: [
+      'Pulsa',
+      'Paket data',
+      'Voucher internet',
+      'Token listrik',
+      'TopUp game',
+    ],
+    iconName: 'Smartphone',
+  },
+  {
+    id: 'pembayaran',
+    code: 'C. PEMBAYARAN',
+    name: 'Loket Pembayaran & PPOB',
+    shortTitle: 'Pembayaran',
+    description:
+      'Bayar tagihan bulanan tepat waktu dalam satu tempat: layanan PPOB resmi, tagihan rutin, isi saldo kartu eMoney, serta iuran BPJS Kesehatan.',
+    highlights: [
+      'PPOB',
+      'Pembayaran tagihan',
+      'eMoney',
+      'BPJS & layanan pembayaran lainnya',
+    ],
+    iconName: 'Receipt',
+  },
+  {
+    id: 'aksesori',
+    code: 'D. AKSESORI',
+    name: 'Aksesoris HP, Hydrogel & Perdana',
+    shortTitle: 'Aksesori',
+    description:
+      'Perlengkapan fisik & proteksi smartphone: aksesoris HP berkualitas, Garskin Custom, pelindung layar Hydrogel Rock Space presisi, dan kartu perdana.',
+    highlights: [
+      'Aksesoris HP',
+      'Garskin Custom',
+      'Hydrogel',
+      'Kartu perdana',
+    ],
+    iconName: 'ShieldCheck',
+  },
+  {
+    id: 'kebutuhan-harian',
+    code: 'E. KEBUTUHAN HARIAN',
+    name: 'Kebutuhan Harian di Konter',
+    shortTitle: 'Kebutuhan Harian',
+    description:
+      'Tersedia langsung di outlet fisik NJR CELL: aneka es krim Aice segar, minuman dingin, serta produk rokok di lokasi konter yang menyediakan.',
+    highlights: [
+      'Es krim Aice',
+      'Minuman dingin',
+      'Rokok di lokasi yang menyediakan',
+    ],
+    iconName: 'ShoppingBag',
+  },
+];
+
+export const SERVICE_CATALOG_ITEMS: ServiceCatalogItem[] = [
+  // A. KEUANGAN (6 Layanan = 2 Baris Penuh Grid 3 Kolom)
+  {
+    id: 'fin-transfer-bank',
+    categoryId: 'keuangan',
+    categoryLabel: 'Keuangan',
+    title: 'Transfer Antarbank',
+    description:
+      'Kirim uang ke seluruh bank nasional (BRI, Mandiri, BCA, BNI, BSI, SeaBank, dll.) dengan proses cepat dan struk bukti transaksi resmi.',
+    availability: 'Konter Sukajadi & Ciherang · Dibantu Langsung',
+    keywords: ['transfer', 'antarbank', 'kirim uang', 'bank', 'bri', 'mandiri', 'bca', 'bni', 'seabank'],
+    actionType: 'wa',
+    actionTarget: 'tarik-tunai',
+    actionLabel: 'Hubungi Konter via WA',
+    iconName: 'Banknote',
+  },
+  {
+    id: 'fin-transfer-ewallet',
+    categoryId: 'keuangan',
+    categoryLabel: 'Keuangan',
+    title: 'Transfer & Top-Up E-Wallet',
+    description:
+      'Isi ulang dan kirim saldo dompet digital DANA, ShopeePay, OVO, GoPay, dan LinkAja baik secara online maupun langsung di konter.',
+    availability: 'Online 24 Jam & Konter Fisik',
+    keywords: ['ewallet', 'e-wallet', 'dana', 'shopeepay', 'ovo', 'gopay', 'linkaja', 'topup saldo'],
+    actionType: 'wa',
+    actionTarget: 'tarik-tunai',
+    actionLabel: 'Top-Up E-Wallet via WA',
+    iconName: 'Wallet',
+  },
+  {
+    id: 'fin-tarik-tunai',
+    categoryId: 'keuangan',
+    categoryLabel: 'Keuangan',
+    title: 'Tarik Tunai Bank & E-Wallet',
+    description:
+      'Cairkan saldo rekening bank atau e-wallet menjadi uang tunai. Uang dihitung bersama secara transparan di tempat saat transaksi.',
+    availability: 'Konter Sukajadi & Ciherang · Transparan',
+    keywords: ['tarik tunai', 'cairkan saldo', 'ambil uang', 'tunai', 'cash', 'pencairan'],
+    actionType: 'wa',
+    actionTarget: 'tarik-tunai',
+    actionLabel: 'Tanya Tarik Tunai',
+    iconName: 'Banknote',
+  },
+  {
+    id: 'fin-mandiri-agen',
+    categoryId: 'keuangan',
+    categoryLabel: 'Keuangan',
+    title: 'Agen Mandiri Resmi',
+    description:
+      'Terdaftar resmi sebagai Agen Mandiri (Kode: 2407196) · Jaringan BERSAMA untuk transaksi perbankan Bank Mandiri lebih dekat tanpa antre ke kantor cabang: setor tunai, tarik tunai, dan transfer.',
+    availability: 'Kode Agen Mandiri: 2407196 · Jaringan BERSAMA',
+    keywords: ['mandiri', 'mandiri agen', 'agen mandiri', '2407196', 'setor tunai', 'bank mandiri', 'jaringan bersama'],
+    actionType: 'wa',
+    actionTarget: 'mandiri-agen',
+    actionLabel: 'Layanan Agen Mandiri',
+    iconName: 'Building2',
+  },
+  {
+    id: 'fin-perbankan-brilink',
+    categoryId: 'keuangan',
+    categoryLabel: 'Keuangan',
+    title: 'Agen BRILink Resmi',
+    description:
+      'Terdaftar resmi sebagai Agen BRILink (Kode: 12400836) · Jaringan BERSAMA untuk transaksi setor tunai, tarik tunai, transfer BRI, dan BRIVA.',
+    availability: 'Kode Agen BRILink: 12400836 · Jaringan BERSAMA',
+    keywords: ['brilink', '12400836', 'bri', 'briva', 'setor tunai bri', 'tarik tunai bri', 'jaringan bersama'],
+    actionType: 'wa',
+    actionTarget: 'mandiri-agen',
+    actionLabel: 'Layanan Agen BRILink',
+    iconName: 'Landmark',
+  },
+  {
+    id: 'fin-mini-atm',
+    categoryId: 'keuangan',
+    categoryLabel: 'Keuangan',
+    title: 'Layanan Perbankan & Mini ATM',
+    description:
+      'Bantuan transaksi gesek kartu ATM di mesin EDC konter (Jaringan BERSAMA) untuk cek saldo, transfer antarbank, tarik tunai, dan setoran perbankan.',
+    availability: 'Mesin EDC Resmi · Jaringan BERSAMA',
+    keywords: ['mini atm', 'perbankan', 'cek saldo', 'kartu atm', 'edc', 'gesek tunai', 'jaringan bersama'],
+    actionType: 'wa',
+    actionTarget: 'mandiri-agen',
+    actionLabel: 'Tanya Layanan Mini ATM',
+    iconName: 'CreditCard',
+  },
+
+  // B. DIGITAL (6 Layanan = 2 Baris Penuh Grid 3 Kolom)
+  {
+    id: 'dig-pulsa',
+    categoryId: 'digital',
+    categoryLabel: 'Digital',
+    title: 'Pulsa Semua Operator',
+    description:
+      'Isi ulang pulsa reguler Telkomsel, Indosat IM3, XL, Axis, Tri (3), dan Smartfren dengan harga bersahabat dan masuk hitungan detik.',
+    availability: 'Online 24 Jam (Buylink) & Konter',
+    keywords: ['pulsa', 'telkomsel', 'indosat', 'xl', 'axis', 'tri', 'smartfren', 'isi pulsa'],
+    actionType: 'external',
+    actionTarget: 'https://buylink.id/njrcell',
+    actionLabel: 'Beli Pulsa 24 Jam',
+    iconName: 'Smartphone',
+  },
+  {
+    id: 'dig-paket-data',
+    categoryId: 'digital',
+    categoryLabel: 'Digital',
+    title: 'Paket Data & Kuota',
+    description:
+      'Pilihan kuota internet harian, mingguan, hingga bulanan lengkap untuk kebutuhan belajar, kerja, maupun streaming.',
+    availability: 'Online 24 Jam (Buylink) & Konter',
+    keywords: ['paket data', 'kuota', 'internet', 'isi ulang kuota', 'data seluler'],
+    actionType: 'external',
+    actionTarget: 'https://buylink.id/njrcell',
+    actionLabel: 'Beli Paket Data',
+    iconName: 'Wifi',
+  },
+  {
+    id: 'dig-voucher-internet',
+    categoryId: 'digital',
+    categoryLabel: 'Digital',
+    title: 'Voucher Internet',
+    description:
+      'Tersedia voucher kuota internet fisik (gesek) maupun kode voucher elektrik praktis untuk semua operator seluler.',
+    availability: 'Tersedia di Konter & Online',
+    keywords: ['voucher', 'voucher internet', 'voucher fisik', 'voucher kuota'],
+    actionType: 'wa',
+    actionTarget: 'voucher',
+    actionLabel: 'Pesan Voucher Internet',
+    iconName: 'Ticket',
+  },
+  {
+    id: 'dig-token-listrik',
+    categoryId: 'digital',
+    categoryLabel: 'Digital',
+    title: 'Token Listrik PLN',
+    description:
+      'Pembelian kode stroom token listrik PLN prabayar semua nominal. Bisa dibeli mandiri 24 jam penuh atau langsung di konter.',
+    availability: 'Online 24 Jam (Buylink) & Konter',
+    keywords: ['token', 'listrik', 'pln', 'prabayar', 'stroom', 'token listrik'],
+    actionType: 'external',
+    actionTarget: 'https://buylink.id/njrcell',
+    actionLabel: 'Beli Token PLN',
+    iconName: 'Zap',
+  },
+  {
+    id: 'dig-topup-game',
+    categoryId: 'digital',
+    categoryLabel: 'Digital',
+    title: 'TopUp Game',
+    description:
+      'Isi diamond dan voucher game favorit (Mobile Legends, Free Fire, PUBG Mobile, Genshin Impact, Valorant, dan lainnya) secara instan.',
+    availability: 'Online 24 Jam (Buylink) & Konter',
+    keywords: ['game', 'topup game', 'diamond', 'mobile legends', 'free fire', 'pubg', 'voucher game'],
+    actionType: 'external',
+    actionTarget: 'https://buylink.id/njrcell',
+    actionLabel: 'TopUp Game Sekarang',
+    iconName: 'Gamepad2',
+  },
+  {
+    id: 'dig-paket-telpon',
+    categoryId: 'digital',
+    categoryLabel: 'Digital',
+    title: 'Paket Telepon & SMS',
+    description:
+      'Aktivasi paket nelpon harian, mingguan, dan bulanan ke sesama maupun semua operator agar komunikasi tetap hemat.',
+    availability: 'Online 24 Jam (Buylink) & Konter',
+    keywords: ['paket telpon', 'nelpon', 'sms', 'telepon', 'paket bicara'],
+    actionType: 'external',
+    actionTarget: 'https://buylink.id/njrcell',
+    actionLabel: 'Beli Paket Telepon',
+    iconName: 'Smartphone',
+  },
+
+  // C. PEMBAYARAN (6 Layanan = 2 Baris Penuh Grid 3 Kolom)
+  {
+    id: 'pay-ppob',
+    categoryId: 'pembayaran',
+    categoryLabel: 'Pembayaran',
+    title: 'Layanan PPOB Lengkap',
+    description:
+      'Loket pembayaran online terpadu (Payment Point Online Bank) dengan bukti struk pembayaran sah dan jelas.',
+    availability: 'Konter Sukajadi & Ciherang',
+    keywords: ['ppob', 'loket pembayaran', 'struk', 'tagihan'],
+    actionType: 'wa',
+    actionTarget: 'mandiri-agen',
+    actionLabel: 'Bayar via PPOB Konter',
+    iconName: 'Receipt',
+  },
+  {
+    id: 'pay-tagihan',
+    categoryId: 'pembayaran',
+    categoryLabel: 'Pembayaran',
+    title: 'Tagihan Listrik & PDAM',
+    description:
+      'Bayar tagihan listrik PLN Pascabayar dan air PDAM tepat waktu sebelum tanggal jatuh tempo dengan struk resmi.',
+    availability: 'Konter Sukajadi & Ciherang',
+    keywords: ['tagihan', 'pln pascabayar', 'pdam', 'air', 'listrik bulanan'],
+    actionType: 'wa',
+    actionTarget: 'mandiri-agen',
+    actionLabel: 'Cek & Bayar Tagihan',
+    iconName: 'FileText',
+  },
+  {
+    id: 'pay-emoney',
+    categoryId: 'pembayaran',
+    categoryLabel: 'Pembayaran',
+    title: 'Top-Up Kartu eMoney',
+    description:
+      'Pengisian saldo kartu uang elektronik (Mandiri e-Money, BRI Brizzi, BNI TapCash, BCA Flazz) untuk tol dan transportasi.',
+    availability: 'Online & Konter NJR CELL',
+    keywords: ['emoney', 'e-money', 'brizzi', 'tapcash', 'flazz', 'kartu tol', 'uang elektronik'],
+    actionType: 'wa',
+    actionTarget: 'tarik-tunai',
+    actionLabel: 'Isi Saldo eMoney',
+    iconName: 'CreditCard',
+  },
+  {
+    id: 'pay-bpjs',
+    categoryId: 'pembayaran',
+    categoryLabel: 'Pembayaran',
+    title: 'BPJS Kesehatan & TK',
+    description:
+      'Pembayaran iuran rutin bulanan BPJS Kesehatan dan BPJS Ketenagakerjaan mudah tanpa antre.',
+    availability: 'Konter Sukajadi & Ciherang',
+    keywords: ['bpjs', 'bpjs kesehatan', 'bpjs ketenagakerjaan', 'iuran bpjs', 'pembayaran'],
+    actionType: 'wa',
+    actionTarget: 'mandiri-agen',
+    actionLabel: 'Bayar BPJS via WA',
+    iconName: 'ShieldCheck',
+  },
+  {
+    id: 'pay-wifi-tv',
+    categoryId: 'pembayaran',
+    categoryLabel: 'Pembayaran',
+    title: 'Tagihan WiFi & TV Kabel',
+    description:
+      'Pembayaran tagihan internet rumah IndiHome, MyRepublic, Iconnet, dan langganan TV berbayar bulanan.',
+    availability: 'Online 24 Jam & Konter',
+    keywords: ['wifi', 'indihome', 'internet rumah', 'tv kabel', 'iconnet'],
+    actionType: 'wa',
+    actionTarget: 'mandiri-agen',
+    actionLabel: 'Bayar Tagihan WiFi',
+    iconName: 'Wifi',
+  },
+  {
+    id: 'pay-multifinance',
+    categoryId: 'pembayaran',
+    categoryLabel: 'Pembayaran',
+    title: 'Angsuran & Tagihan Lainnya',
+    description:
+      'Layanan pembayaran cicilan multifinance, kredit resmi, e-commerce, dan tagihan bulanan lainnya di satu loket.',
+    availability: 'Konter Sukajadi & Ciherang',
+    keywords: ['angsuran', 'cicilan', 'multifinance', 'fif', 'adira', 'wom', 'baf'],
+    actionType: 'wa',
+    actionTarget: 'mandiri-agen',
+    actionLabel: 'Tanya Pembayaran Tagihan',
+    iconName: 'Receipt',
+  },
+
+  // D. AKSESORI (6 Layanan = 2 Baris Penuh Grid 3 Kolom)
+  {
+    id: 'acc-hp',
+    categoryId: 'aksesori',
+    categoryLabel: 'Aksesori',
+    title: 'Aksesoris HP Lengkap',
+    description:
+      'Tersedia berbagai perlengkapan smartphone harian seperti holder HP, OTG, memori MicroSD, flashdisk, dan perlengkapan pendukung.',
+    availability: 'Tersedia di Outlet Sukajadi & Ciherang',
+    keywords: ['aksesoris', 'aksesori hp', 'otg', 'memori', 'flashdisk', 'perlengkapan hp'],
+    actionType: 'wa',
+    actionTarget: 'charger',
+    actionLabel: 'Cek Stok Aksesoris',
+    iconName: 'Plug',
+  },
+  {
+    id: 'acc-garskin',
+    categoryId: 'aksesori',
+    categoryLabel: 'Aksesori',
+    title: 'Garskin Custom',
+    description:
+      'Stiker pelindung bodi belakang HP dengan motif keren atau foto custom pilihan Anda, dipotong presisi mengikuti lekuk kamera & bodi.',
+    availability: 'Custom Semua Tipe HP',
+    keywords: ['garskin', 'garskin custom', 'stiker hp', 'pelindung belakang', 'custom skin'],
+    actionType: 'wa',
+    actionTarget: 'garskin',
+    actionLabel: 'Pesan Garskin Custom',
+    iconName: 'Layers',
+  },
+  {
+    id: 'acc-hydrogel',
+    categoryId: 'aksesori',
+    categoryLabel: 'Aksesori',
+    title: 'Pelindung Layar Hydrogel',
+    description:
+      'Hydrogel Rock Space lentur dan responsif yang dipotong langsung menggunakan mesin presisi untuk layar datar maupun lengkung.',
+    availability: 'Tersedia Katalog Lengkap',
+    keywords: ['hydrogel', 'anti gores', 'pelindung layar', 'rock space', 'tempered glass'],
+    actionType: 'external',
+    actionTarget: 'https://njrcellciherang.my.canva.site/hydrogel',
+    actionLabel: 'Buka Katalog Hydrogel',
+    iconName: 'ShieldCheck',
+  },
+  {
+    id: 'acc-perdana',
+    categoryId: 'aksesori',
+    categoryLabel: 'Aksesori',
+    title: 'Kartu Perdana',
+    description:
+      'Sedia nomor perdana baru dan kartu perdana kuota berbagai operator, lengkap dengan bantuan registrasi sampai aktif di konter.',
+    availability: 'Dibantu Registrasi di Konter',
+    keywords: ['kartu perdana', 'perdana', 'nomor baru', 'sim card', 'registrasi kartu'],
+    actionType: 'wa',
+    actionTarget: 'voucher',
+    actionLabel: 'Tanya Stok Perdana',
+    iconName: 'SimCard',
+  },
+  {
+    id: 'acc-charger',
+    categoryId: 'aksesori',
+    categoryLabel: 'Aksesori',
+    title: 'Charger & Kabel ROBOT/VIVAN',
+    description:
+      'Kepala charger fast charging, kabel data Type-C, Lightning, & Micro USB original bergaransi resmi dari brand ROBOT dan VIVAN.',
+    availability: 'Original di Konter Sukajadi & Ciherang',
+    keywords: ['charger', 'kabel data', 'robot', 'vivan', 'fast charging', 'type c'],
+    actionType: 'wa',
+    actionTarget: 'charger',
+    actionLabel: 'Pesan Charger / Kabel',
+    iconName: 'Zap',
+  },
+  {
+    id: 'acc-audio-casing',
+    categoryId: 'aksesori',
+    categoryLabel: 'Aksesori',
+    title: 'Earphone, TWS & Casing HP',
+    description:
+      'Pilihan headset kabel, earphone bluetooth / TWS suara jernih, serta pelindung casing HP untuk kenyamanan harian Anda.',
+    availability: 'Tersedia di Outlet Sukajadi & Ciherang',
+    keywords: ['earphone', 'headset', 'tws', 'casing', 'case hp', 'audio'],
+    actionType: 'wa',
+    actionTarget: 'charger',
+    actionLabel: 'Tanya Stok Headset/Case',
+    iconName: 'Smartphone',
+  },
+
+  // E. KEBUTUHAN HARIAN (3 Layanan = 1 Baris Penuh Grid 3 Kolom)
+  {
+    id: 'daily-es-krim',
+    categoryId: 'kebutuhan-harian',
+    categoryLabel: 'Kebutuhan Harian',
+    title: 'Es Krim Aice',
+    description:
+      'Aneka pilihan es krim Aice segar dan favorit untuk anak-anak maupun dewasa, tersedia langsung di lemari pendingin konter.',
+    availability: 'Tersedia di Konter Fisik',
+    keywords: ['es krim', 'aice', 'ice cream', 'jajanan'],
+    actionType: 'wa',
+    actionTarget: 'produk-konter',
+    actionLabel: 'Tanya Ketersediaan',
+    iconName: 'IceCreamCone',
+  },
+  {
+    id: 'daily-minuman',
+    categoryId: 'kebutuhan-harian',
+    categoryLabel: 'Kebutuhan Harian',
+    title: 'Minuman Dingin',
+    description:
+      'Pilihan minuman kemasan dingin yang menyegarkan saat Anda berkunjung atau menunggu proses transaksi di konter NJR CELL.',
+    availability: 'Tersedia di Konter Sukajadi & Ciherang',
+    keywords: ['minuman', 'minuman dingin', 'air mineral', 'segar'],
+    actionType: 'wa',
+    actionTarget: 'produk-konter',
+    actionLabel: 'Tanya Ketersediaan',
+    iconName: 'CupSoda',
+  },
+  {
+    id: 'daily-rokok',
+    categoryId: 'kebutuhan-harian',
+    categoryLabel: 'Kebutuhan Harian',
+    title: 'Rokok (Lokasi Tertentu)',
+    description:
+      'Tersedia berbagai produk rokok dan kebutuhan harian pendamping bagi pelanggan dewasa (18+) di lokasi konter yang menyediakan.',
+    availability: 'Khusus Dewasa (18+) · Bayar Tunai / QRIS',
+    keywords: ['rokok', 'kebutuhan harian', 'produk konter'],
+    actionType: 'wa',
+    actionTarget: 'produk-konter',
+    actionLabel: 'Hubungi Konter',
+    iconName: 'PackageCheck',
+  },
+];
+
+

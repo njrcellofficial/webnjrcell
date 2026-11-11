@@ -21,7 +21,7 @@ interface WhatsAppModalProps {
 const QUICK_TOPICS = [
   { id: 'umum', label: 'Tanya Layanan Umum', text: 'Halo NJR CELL, saya ingin bertanya mengenai layanan konter.' },
   { id: 'tarik-tunai', label: 'Transfer Bank / Tarik Tunai', text: 'Halo NJR CELL, saya ingin transaksi transfer bank / tarik tunai.' },
-  { id: 'mandiri-agen', label: 'Mandiri Agen & BRILink (12400836)', text: 'Halo NJR CELL, saya ingin bertanya mengenai layanan Mandiri Agen / Agen BRILink (Kode Agen 12400836).' },
+  { id: 'mandiri-agen', label: 'Agen Mandiri (2407196) & BRILink (12400836)', text: 'Halo NJR CELL, saya ingin bertanya mengenai layanan Agen Mandiri (Kode: 2407196) / Agen BRILink (Kode: 12400836) · Jaringan BERSAMA.' },
   { id: 'hydrogel', label: 'Pesan Pelindung Layar Hydrogel', text: 'Halo NJR CELL, saya ingin pesan / pasang pelindung layar hydrogel.' },
   { id: 'garskin', label: 'Pesan Garskin Custom', text: 'Halo NJR CELL, saya ingin pesan garskin HP custom.' },
   { id: 'voucher', label: 'Kartu Perdana / Voucher Fisik', text: 'Halo NJR CELL, saya ingin tanya stok kartu perdana / voucher fisik internet.' },

@@ -41,13 +41,13 @@ interface ServiceOption {
 const SERVICE_OPTIONS: ServiceOption[] = [
   {
     id: 'transfer_brilink',
-    title: 'Transfer Bank & BRILink',
-    shortDesc: 'Transfer antar bank, tarik tunai, kode agen BRILink 12400836',
+    title: 'Transfer Bank, Agen Mandiri & BRILink',
+    shortDesc: 'Agen Mandiri (2407196) & BRILink (12400836) · Jaringan BERSAMA',
     icon: <Banknote className="w-4 h-4 text-[#39FF14]" />,
     category: 'Perbankan',
     defaultTopic: 'transfer',
     suggestedText:
-      'Halo Admin NJR CELL, saya ingin melakukan transaksi Transfer Bank / Tarik Tunai (Agen BRILink). Mohon nomor rekening resmi / QRIS dan total biayanya.',
+      'Halo Admin NJR CELL, saya ingin melakukan transaksi Transfer Bank / Tarik Tunai (Agen Mandiri 2407196 / BRILink 12400836 · Jaringan BERSAMA). Mohon nomor rekening resmi / QRIS dan total biayanya.',
   },
   {
     id: 'topup_ewallet',
@@ -169,7 +169,7 @@ export const AutoChatWidget: React.FC = () => {
 
     if (service.id === 'transfer_brilink') {
       botResponseText =
-        'Siap! Untuk Transfer Bank, Tarik Tunai, atau Mandiri Agen & Agen BRILink (Kode: 12400836), transaksi diproses cepat dan aman atas nama resmi AMIR NURJAMAN.\n\nSilakan pilih outlet terdekat di bawah ini untuk langsung terhubung ke WhatsApp Admin yang bertugas:';
+        'Siap! Untuk Transfer Bank, Tarik Tunai, atau layanan terdaftar resmi Agen Mandiri (Kode: 2407196) & BRILink (Kode: 12400836) · Jaringan BERSAMA, transaksi diproses cepat dan aman atas nama resmi AMIR NURJAMAN.\n\nSilakan pilih outlet terdekat di bawah ini untuk langsung terhubung ke WhatsApp Admin yang bertugas:';
     } else if (service.id === 'topup_ewallet') {
       botResponseText =
         'Top-up saldo DANA, OVO, ShopeePay, Gopay, atau LinkAja siap dibantu! Saldo langsung masuk dalam hitungan menit.\n\nSilakan pilih outlet konter tujuan dan kirim detail ke WhatsApp:';
@@ -365,12 +365,12 @@ export const AutoChatWidget: React.FC = () => {
           </div>
 
           {/* Quick Info Bar */}
-          <div className="bg-[#142318] px-3.5 py-1.5 border-b border-[#203324] text-[11px] text-[#A3B3A8] flex items-center justify-between">
+          <div className="bg-[#142318] px-3.5 py-1.5 border-b border-[#203324] text-[10px] text-[#A3B3A8] flex flex-wrap items-center justify-between gap-1">
             <span className="flex items-center gap-1 text-[#39FF14]">
-              <ShieldCheck className="w-3.5 h-3.5" />
-              Rekening Resmi: a.n. AMIR NURJAMAN
+              <ShieldCheck className="w-3.5 h-3.5 shrink-0" />
+              Mandiri: 2407196 · BRILink: 12400836
             </span>
-            <span className="text-gray-400 font-mono">Agen BRILink: 12400836</span>
+            <span className="text-gray-300 font-mono">Jaringan BERSAMA</span>
           </div>
 
           {/* Chat Messages Body */}
