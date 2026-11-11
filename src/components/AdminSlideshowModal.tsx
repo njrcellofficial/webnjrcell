@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import {
   signInWithPopup,
-  signInWithEmailAndPassword,
   signOut,
   onAuthStateChanged,
   User,
@@ -89,10 +89,6 @@ export const AdminSlideshowModal: React.FC<AdminSlideshowModalProps> = ({
   const [isAuthorizedAdmin, setIsAuthorizedAdmin] = useState(false);
   const [checkingAdminRole, setCheckingAdminRole] = useState(true);
 
-  // Email/password login state (optional alternative to Google Popup)
-  const [showEmailLogin, setShowEmailLogin] = useState(false);
-  const [emailInput, setEmailInput] = useState('');
-  const [passwordInput, setPasswordInput] = useState('');
   const [authError, setAuthError] = useState<string | null>(null);
   const [authLoading, setAuthLoading] = useState(false);
 
@@ -188,24 +184,6 @@ export const AdminSlideshowModal: React.FC<AdminSlideshowModalProps> = ({
         err instanceof Error
           ? `Gagal login Google: ${err.message}`
           : 'Gagal login dengan Google.'
-      );
-    } finally {
-      setAuthLoading(false);
-    }
-  };
-
-  const handleEmailLogin = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setAuthError(null);
-    setAuthLoading(true);
-    try {
-      await signInWithEmailAndPassword(auth, emailInput.trim(), passwordInput);
-      showNotice('success', 'Berhasil login dengan email.');
-    } catch (err) {
-      setAuthError(
-        err instanceof Error
-          ? `Gagal login: ${err.message}`
-          : 'Email atau password tidak sesuai.'
       );
     } finally {
       setAuthLoading(false);
@@ -837,9 +815,9 @@ export const AdminSlideshowModal: React.FC<AdminSlideshowModalProps> = ({
 
   const tabs: DashboardTab[] = ['Semua', 'Tayang', 'Terjadwal', 'Expired', 'Draft', 'Arsip'];
 
-  return (
+  return createPortal(
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/85 backdrop-blur-md"
+      className="fixed inset-0 z-[120] flex items-center justify-center p-2 sm:p-4 bg-black/85 backdrop-blur-md"
       role="dialog"
       aria-modal="true"
       aria-labelledby="cms-admin-title"
@@ -918,7 +896,7 @@ export const AdminSlideshowModal: React.FC<AdminSlideshowModalProps> = ({
                   Login Admin Slideshow NJR CELL
                 </h3>
                 <p className="text-xs sm:text-sm text-[#A3B3A8]">
-                  Masuk menggunakan akun Google pemilik (<code className="text-[#39FF14]">{BOOTSTRAPPED_ADMIN_EMAIL}</code>) atau akun admin terdaftar untuk mengelola banner promosi.
+                  Masuk menggunakan akun Google Admin resmi yang telah terdaftar untuk mengelola banner promosi.
                 </p>
               </div>
 
@@ -938,62 +916,14 @@ export const AdminSlideshowModal: React.FC<AdminSlideshowModalProps> = ({
                   <Lock className="w-4 h-4" />
                   <span>{authLoading ? 'Memproses Login...' : 'Login dengan Google Admin'}</span>
                 </button>
-
-                <button
-                  type="button"
-                  onClick={() => setShowEmailLogin((s) => !s)}
-                  className="w-full py-2.5 px-4 rounded-xl bg-white/5 hover:bg-white/10 text-xs font-semibold text-[#B8C7BD] border border-white/10 transition-colors cursor-pointer"
-                >
-                  {showEmailLogin
-                    ? 'Sembunyikan Login Email & Password'
-                    : 'Gunakan Email & Password (Opsional)'}
-                </button>
               </div>
-
-              {showEmailLogin && (
-                <form onSubmit={handleEmailLogin} className="space-y-3 pt-3 border-t border-white/10">
-                  <div>
-                    <label className="block text-xs font-semibold text-[#B8C7BD] mb-1">
-                      Email Admin
-                    </label>
-                    <input
-                      type="email"
-                      required
-                      value={emailInput}
-                      onChange={(e) => setEmailInput(e.target.value)}
-                      placeholder="njrcell.official@gmail.com"
-                      className="w-full px-3.5 py-2.5 rounded-xl bg-[#0A0E0C] border border-white/15 text-sm text-[#F3F7F4]"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-xs font-semibold text-[#B8C7BD] mb-1">
-                      Password
-                    </label>
-                    <input
-                      type="password"
-                      required
-                      value={passwordInput}
-                      onChange={(e) => setPasswordInput(e.target.value)}
-                      placeholder="••••••••"
-                      className="w-full px-3.5 py-2.5 rounded-xl bg-[#0A0E0C] border border-white/15 text-sm text-[#F3F7F4]"
-                    />
-                  </div>
-                  <button
-                    type="submit"
-                    disabled={authLoading}
-                    className="w-full py-2.5 px-4 rounded-xl bg-white/15 hover:bg-[#39FF14] text-[#F3F7F4] hover:text-[#070A08] font-bold text-xs transition-colors cursor-pointer"
-                  >
-                    Masuk dengan Email
-                  </button>
-                </form>
-              )}
 
               <div className="p-4 rounded-xl bg-[#0C100E] border border-white/10 text-xs text-[#A3B3A8] space-y-1.5">
                 <p className="font-bold text-[#F3F7F4]">
-                  Petunjuk Keamanan & Admin Pertama:
+                  Keamanan Akses Administrator:
                 </p>
                 <p>
-                  1. Akun <strong className="text-[#39FF14]">{BOOTSTRAPPED_ADMIN_EMAIL}</strong> sudah terdaftar otomatis sebagai Admin Utama di aturan keamanan Firestore (<code className="text-[#D1DDD5]">firestore.rules</code>).
+                  1. Sistem hanya mengizinkan autentikasi melalui akun Google Admin resmi yang telah diverifikasi pada aturan keamanan database.
                 </p>
                 <p>
                   2. Pengunjung biasa tidak dapat melihat slide berstatus Draft, Terjadwal, Expired, atau Arsip, dan tidak dapat mengubah data.
@@ -1008,19 +938,17 @@ export const AdminSlideshowModal: React.FC<AdminSlideshowModalProps> = ({
             <div className="max-w-lg mx-auto my-6 p-6 rounded-2xl bg-[#1F1414] border border-red-500/40 space-y-4 text-center">
               <AlertTriangle className="w-10 h-10 text-red-400 mx-auto" />
               <h3 className="text-lg font-bold text-[#F3F7F4]">
-                Akun Belum Memiliki Akses Admin
+                Akun Tidak Memiliki Akses Admin
               </h3>
               <p className="text-xs sm:text-sm text-[#D1DDD5]">
-                Anda login sebagai <strong>{currentUser.email}</strong> (UID:{' '}
-                <code className="font-mono-num text-amber-300">{currentUser.uid}</code>).
-                Hanya akun utama (<strong>{BOOTSTRAPPED_ADMIN_EMAIL}</strong>) atau UID yang didaftarkan di koleksi <code>/admins</code> yang diizinkan mengubah slideshow.
+                Akun Google yang Anda gunakan tidak terdaftar sebagai Administrator resmi NJR CELL. Hanya akun Google Admin resmi yang diizinkan mengelola slideshow.
               </p>
               <button
                 type="button"
                 onClick={handleLogout}
                 className="px-5 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-xs font-bold text-[#F3F7F4] cursor-pointer"
               >
-                Ganti Akun Google
+                Keluar / Ganti Akun Google
               </button>
             </div>
           ) : (
@@ -1852,6 +1780,7 @@ export const AdminSlideshowModal: React.FC<AdminSlideshowModalProps> = ({
           />
         )}
       </div>
-    </div>
+    </div>,
+    document.body
   );
 };

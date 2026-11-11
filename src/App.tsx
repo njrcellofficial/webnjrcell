@@ -796,7 +796,6 @@ export function App() {
                       style={{
                         ['--accent' as string]: '#39FF14',
                         gridColumn: `span ${fillerSpan}`,
-                        aspectRatio: fillerSpan === 2 ? '2 / 0.9' : undefined,
                       }}
                     >
                       <span className="ojb-card-glow" aria-hidden="true" />
