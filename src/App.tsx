@@ -115,9 +115,6 @@ export function App() {
   const [showAllServicesInHero, setShowAllServicesInHero] = useState(false);
   const searchInputRef = useRef<HTMLInputElement>(null);
 
-  // Interactive Story Step (Section Tentang Kami & Pembayaran)
-  const [activeStoryStep, setActiveStoryStep] = useState<1 | 2 | 3>(1);
-
   // Per-outlet map view mode ('pin' = official pin screenshot image, 'live' = interactive Google Maps iframe)
   const [outletMapModes, setOutletMapModes] = useState<Record<string, 'pin' | 'live'>>({
     sukajadi: 'pin',
@@ -196,11 +193,10 @@ export function App() {
     setTimeout(() => setCopiedAccount(null), 2500);
   };
 
-  const jumpToAllAccounts = () => {
-    setActiveStoryStep(1);
+  const jumpToAllAccounts = (targetId = 'rekening-resmi') => {
     setMobileMenuOpen(false);
     setTimeout(() => {
-      const el = document.getElementById('rekening-resmi') || document.getElementById('tentang-kami');
+      const el = document.getElementById(targetId) || document.getElementById('tentang-kami');
       if (el) {
         el.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
@@ -518,8 +514,8 @@ export function App() {
           <div className="ojb-lib-glow" aria-hidden="true" />
 
           {/* LEFT / TOP COLUMN: HERO INTRO + QUICK HUB STATUS CARD */}
-          <div className="ojb-lib-intro lg:sticky lg:top-24">
-            <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-[#0B150E]/80 border border-[#39FF14]/25 text-[#9EFF8A] text-xs font-medium mb-4 backdrop-blur-md">
+          <div className="ojb-lib-intro">
+            <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-[#0B150E]/80 border border-[#39FF14]/25 text-[#9EFF8A] text-xs font-medium mb-3.5 backdrop-blur-md">
               <span className="w-2 h-2 rounded-full bg-[#39FF14] shadow-[0_0_10px_#39FF14]" />
               <span>Modern Dark Digital Service Hub</span>
             </div>
@@ -543,9 +539,10 @@ export function App() {
               Solusi transaksi keuangan, pembayaran digital, internet, aksesoris dan kebutuhan harian Anda. Lebih dekat, mudah dan praktis bersama NJR CELL.
             </p>
 
+            {/* 2x2 Balanced CTA Grid — Zero uneven wrapping or empty gaps */}
             <div className="ojb-lib-cta">
               <a href="#layanan" className="ojb-btn ojb-btn-primary">
-                <span>Jelajahi Layanan</span>
+                <span className="truncate">Jelajahi Layanan</span>
                 <span className="ojb-btn-icon">
                   <ArrowUpRight className="w-4 h-4" />
                 </span>
@@ -553,12 +550,29 @@ export function App() {
 
               <button
                 type="button"
-                onClick={jumpToAllAccounts}
+                onClick={() => jumpToAllAccounts('rekening-resmi')}
                 className="ojb-btn ojb-btn-ghost cursor-pointer"
               >
-                <span>Semua Rekening</span>
+                <span className="truncate">Semua Rekening</span>
                 <span className="ojb-btn-icon">
                   <Landmark className="w-4 h-4 text-[#39FF14]" />
+                </span>
+              </button>
+
+              <button
+                type="button"
+                onClick={handleCopyAllAccounts}
+                className="ojb-btn ojb-btn-ghost cursor-pointer"
+              >
+                <span className="truncate">
+                  {copiedAccount === 'all-accounts' ? 'Semua Tersalin!' : 'Copy Rekening'}
+                </span>
+                <span className="ojb-btn-icon">
+                  {copiedAccount === 'all-accounts' ? (
+                    <Check className="w-4 h-4 text-[#39FF14]" />
+                  ) : (
+                    <Copy className="w-4 h-4 text-[#39FF14]" />
+                  )}
                 </span>
               </button>
 
@@ -567,7 +581,7 @@ export function App() {
                 onClick={() => openWaWithTopic('umum')}
                 className="ojb-btn ojb-btn-ghost cursor-pointer"
               >
-                <span>Hubungi Kami</span>
+                <span className="truncate">Hubungi Kami</span>
                 <span className="ojb-btn-icon">
                   <MessageCircle className="w-4 h-4" />
                 </span>
@@ -575,26 +589,26 @@ export function App() {
             </div>
 
             <div className="ojb-lib-note">
-              <ShieldCheck className="w-4 h-4 text-[#39FF14] shrink-0" />
+              <ShieldCheck className="w-4 h-4 text-[#39FF14] shrink-0 mt-0.5" />
               <span>
                 Terdaftar resmi <b>Agen Mandiri (Kode: {BRAND_INFO.mandiriAgentCode})</b> &amp; <b>BRILink (Kode: {BRAND_INFO.brilinkAgentCode})</b> · <b>{BRAND_INFO.atmNetwork}</b> · Ketuk kartu untuk detail.
               </span>
             </div>
 
-            {/* Quick Digital Hub Status Panel (Fills desktop left-column space cleanly & gives instant mobile shortcuts) */}
-            <div className="mt-6 p-4 rounded-2xl glass-surface border border-white/[0.09] space-y-3">
+            {/* Quick Digital Hub Status Panel */}
+            <div className="mt-4 p-4 rounded-2xl glass-surface border border-white/[0.09] space-y-3">
               <div className="flex items-center justify-between gap-2 pb-2.5 border-b border-white/[0.07]">
-                <div className="flex items-center gap-2.5">
+                <div className="flex items-center gap-2.5 min-w-0">
                   <img
                     src="/assets/aistudio/Logo_NJR_CELL_Neon_Hijau_4282a177.png"
                     alt="NJR CELL"
-                    className="w-8 h-8 object-contain"
+                    className="w-8 h-8 object-contain shrink-0"
                   />
-                  <div>
-                    <span className="text-xs font-bold text-white block leading-tight">
+                  <div className="min-w-0">
+                    <span className="text-xs font-bold text-white block leading-tight truncate">
                       Pusat Transaksi Resmi NJR CELL
                     </span>
-                    <span className="text-[11px] text-[#8EA394] block">
+                    <span className="text-[11px] text-[#8EA394] block truncate">
                       Pamarican &amp; Banjarsari, Kab. Ciamis
                     </span>
                   </div>
@@ -602,7 +616,7 @@ export function App() {
                 <div className="flex items-center gap-1.5 shrink-0">
                   <button
                     type="button"
-                    onClick={jumpToAllAccounts}
+                    onClick={() => jumpToAllAccounts('rekening-resmi')}
                     className="px-2.5 py-1.5 rounded-lg bg-white/[0.06] hover:bg-[#39FF14]/20 border border-white/10 hover:border-[#39FF14]/40 text-white hover:text-[#39FF14] text-[11px] font-bold inline-flex items-center gap-1 transition-all cursor-pointer"
                   >
                     <Landmark className="w-3.5 h-3.5 text-[#39FF14]" />
@@ -620,75 +634,35 @@ export function App() {
               </div>
 
               <div className="grid grid-cols-3 gap-2 text-center">
-                <a
-                  href="#tentang-kami"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setActiveStoryStep(3);
-                    document.getElementById('rekening-resmi')?.scrollIntoView({ behavior: 'smooth' });
-                  }}
-                  className="p-2 rounded-xl bg-black/35 border border-white/[0.06] hover:border-[#39FF14]/40 transition-all"
+                <button
+                  type="button"
+                  onClick={() => jumpToAllAccounts('keagenan-resmi')}
+                  className="p-2 rounded-xl bg-black/35 border border-white/[0.06] hover:border-[#39FF14]/40 transition-all cursor-pointer text-center"
                 >
                   <span className="text-[10px] text-[#8EA394] block">Agen Mandiri</span>
                   <span className="font-mono-num text-xs font-bold text-[#39FF14] mt-0.5 block">
                     {BRAND_INFO.mandiriAgentCode}
                   </span>
-                </a>
-                <a
-                  href="#tentang-kami"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setActiveStoryStep(3);
-                    document.getElementById('rekening-resmi')?.scrollIntoView({ behavior: 'smooth' });
-                  }}
-                  className="p-2 rounded-xl bg-black/35 border border-white/[0.06] hover:border-[#39FF14]/40 transition-all"
+                </button>
+                <button
+                  type="button"
+                  onClick={() => jumpToAllAccounts('keagenan-resmi')}
+                  className="p-2 rounded-xl bg-black/35 border border-white/[0.06] hover:border-[#39FF14]/40 transition-all cursor-pointer text-center"
                 >
                   <span className="text-[10px] text-[#8EA394] block">Agen BRILink</span>
                   <span className="font-mono-num text-xs font-bold text-[#39FF14] mt-0.5 block">
                     {BRAND_INFO.brilinkAgentCode}
                   </span>
-                </a>
-                <a
-                  href="#lokasi-outlet"
-                  className="p-2 rounded-xl bg-black/35 border border-white/[0.06] hover:border-[#39FF14]/40 transition-all"
+                </button>
+                <button
+                  type="button"
+                  onClick={() => jumpToAllAccounts('keagenan-resmi')}
+                  className="p-2 rounded-xl bg-black/35 border border-white/[0.06] hover:border-[#39FF14]/40 transition-all cursor-pointer text-center"
                 >
                   <span className="text-[10px] text-[#8EA394] block">Jaringan ATM</span>
                   <span className="text-xs font-bold text-[#9EFF8A] mt-0.5 block">
                     BERSAMA · 24J
                   </span>
-                </a>
-              </div>
-
-              {/* Shortcut Ke Semua Rekening & Copy Semua Rekening */}
-              <div className="grid grid-cols-2 gap-2 pt-1">
-                <button
-                  type="button"
-                  onClick={jumpToAllAccounts}
-                  className="py-2 px-3 rounded-xl bg-[#39FF14]/12 hover:bg-[#39FF14]/22 border border-[#39FF14]/30 text-[#9EFF8A] hover:text-white text-xs font-bold flex items-center justify-center gap-1.5 transition-all cursor-pointer"
-                >
-                  <Landmark className="w-3.5 h-3.5 text-[#39FF14] shrink-0" />
-                  <span className="truncate">Lihat Semua Rekening</span>
-                </button>
-                <button
-                  type="button"
-                  onClick={handleCopyAllAccounts}
-                  className={`py-2 px-3 rounded-xl border text-xs font-bold flex items-center justify-center gap-1.5 transition-all cursor-pointer ${
-                    copiedAccount === 'all-accounts'
-                      ? 'bg-[#39FF14] text-[#041006] border-[#39FF14]'
-                      : 'bg-white/[0.04] hover:bg-white/[0.09] border-white/10 text-white hover:text-[#39FF14]'
-                  }`}
-                >
-                  {copiedAccount === 'all-accounts' ? (
-                    <>
-                      <Check className="w-3.5 h-3.5 shrink-0" />
-                      <span className="truncate">Semua Tersalin!</span>
-                    </>
-                  ) : (
-                    <>
-                      <Copy className="w-3.5 h-3.5 text-[#39FF14] shrink-0" />
-                      <span className="truncate">Copy Semua Rekening</span>
-                    </>
-                  )}
                 </button>
               </div>
             </div>
@@ -1037,35 +1011,9 @@ export function App() {
 
         {/* ===================================================================
             SECTION: PROMOTION SECTION (#promo) — CONNECTED TO FIREBASE CMS
+            (Single unified header inside PromoSlideshow — no duplicate headers or gaps!)
         =================================================================== */}
-        <section id="promo" className="ojb-section" aria-labelledby="promo-title">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6">
-            <div>
-              <p className="ojb-eyebrow">
-                <Sparkles className="w-3.5 h-3.5 text-[#39FF14]" />
-                Update &amp; Penawaran Resmi
-              </p>
-              <h2 id="promo-title" className="ojb-h2 !mb-0">
-                PROMO &amp; INFO.
-                <br />
-                <span className="ojb-soft">TERBARU HARI INI.</span>
-              </h2>
-            </div>
-            <div className="flex items-center gap-3">
-              <button
-                type="button"
-                onClick={() => setAdminSlideshowOpen(true)}
-                className="ojb-btn ojb-btn-ghost !h-11 !px-4 text-xs cursor-pointer"
-              >
-                <span>Kelola Banner (CMS)</span>
-                <span className="ojb-btn-icon !w-8 !h-8">
-                  <SlidersHorizontal className="w-3.5 h-3.5" />
-                </span>
-              </button>
-            </div>
-          </div>
-
-          {/* Existing Firebase CMS Slideshow Component (100% Preserved) */}
+        <section id="promo" className="ojb-section" aria-label="Galeri Informasi dan Promosi Layanan NJR CELL">
           <PromoSlideshow
             externalAdminModalOpen={adminSlideshowOpen}
             onExternalAdminModalClose={() => setAdminSlideshowOpen(false)}
@@ -1073,318 +1021,391 @@ export function App() {
         </section>
 
         {/* ===================================================================
-            SECTION: TENTANG KAMI, CARA KERJA & REKENING RESMI (#tentang-kami)
-            (Structured like ojailbreaks.com #how-it-works .story + .scene)
+            SECTION: REKENING RESMI, QRIS & KEAGENAN (#tentang-kami / #rekening-resmi)
+            DIBUKA SEMUA TANPA TAB TERSEMBUNYI — RAMAH UNTUK PELANGGAN AWAM / GAPTEK!
         =================================================================== */}
         <section id="tentang-kami" className="ojb-section" aria-labelledby="how-title">
-          <div className="ojb-story">
-            {/* Story Copy + Interactive Numbered Steps */}
-            <div className="ojb-story-copy">
-              <p className="ojb-eyebrow">Tentang Kami &amp; Transaksi Resmi</p>
-              <h2 id="how-title" className="ojb-h2">
-                TRANSAKSI CEPAT.
+          {/* Top Section Header + Quick Copy All Button */}
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4 mb-6">
+            <div>
+              <p className="ojb-eyebrow">
+                <ShieldCheck className="w-4 h-4 text-[#39FF14]" />
+                Tentang Kami · Rekening, QRIS &amp; Keagenan Resmi
+              </p>
+              <h2 id="how-title" className="ojb-h2 !mb-2">
+                REKENING, QRIS &amp; KODE AGEN.
                 <br />
-                <span className="ojb-soft">AMAN &amp; TERPERCAYA.</span>
+                <span className="ojb-soft">DIBUKA SEMUA &amp; MUDAH DICARI.</span>
               </h2>
               <p className="ojb-lede">
-                {BRAND_INFO.heroSubheadline} Pilih langkah di bawah untuk melihat rekening resmi, QRIS, maupun informasi agen.
+                Semua nomor rekening bank, e-wallet, barcode QRIS, serta kode resmi Agen Mandiri &amp; BRILink ditampilkan langsung di bawah ini (tanpa tersembunyi di balik tab) agar siapa saja mudah melihat dan menyalinnya.
               </p>
-
-              <div className="ojb-story-steps-wrap">
-                <span className="ojb-story-rail" aria-hidden="true" />
-                <ol className="space-y-1">
-                  <li
-                    onClick={() => setActiveStoryStep(1)}
-                    className={`ojb-story-step ${activeStoryStep === 1 ? 'is-active' : ''}`}
-                  >
-                    <span className="ojb-step-no">01</span>
-                    <div>
-                      <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
-                        Pilih Rekening atau E-Wallet Resmi.
-                      </h3>
-                      <p className="text-sm text-[#8EA394] mt-1">
-                        Salin nomor rekening Bank Mandiri, BRI, SeaBank, DANA, atau ShopeePay resmi NJR CELL dengan 1 klik.
-                      </p>
-                    </div>
-                  </li>
-
-                  <li
-                    onClick={() => setActiveStoryStep(2)}
-                    className={`ojb-story-step ${activeStoryStep === 2 ? 'is-active' : ''}`}
-                  >
-                    <span className="ojb-step-no">02</span>
-                    <div>
-                      <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
-                        Scan QRIS All Payment (Bebas Ribet).
-                      </h3>
-                      <p className="text-sm text-[#8EA394] mt-1">
-                        Mendukung seluruh aplikasi Mobile Banking &amp; E-Wallet berstandar QRIS Nasional (NMID: {QRIS_INFO.nmid}).
-                      </p>
-                    </div>
-                  </li>
-
-                  <li
-                    onClick={() => setActiveStoryStep(3)}
-                    className={`ojb-story-step ${activeStoryStep === 3 ? 'is-active' : ''}`}
-                  >
-                    <span className="ojb-step-no">03</span>
-                    <div>
-                      <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
-                        Konfirmasi via WhatsApp atau Outlet.
-                      </h3>
-                      <p className="text-sm text-[#8EA394] mt-1">
-                        Kirim bukti transfer ke WhatsApp Admin atau kunjungi langsung cabang Ciherang &amp; Sukajadi.
-                      </p>
-                    </div>
-                  </li>
-                </ol>
-              </div>
             </div>
 
-            {/* Interactive Scene Window (ojailbreaks.com .scene architecture) */}
-            <div id="rekening-resmi" className="ojb-story-visual scroll-mt-24">
-              <div className="ojb-scene">
-                <div className="ojb-scene-bar">
+            <div className="flex flex-wrap items-center gap-2.5 shrink-0">
+              <button
+                type="button"
+                onClick={handleCopyAllAccounts}
+                className={`ojb-btn !h-12 !px-4 text-xs cursor-pointer ${
+                  copiedAccount === 'all-accounts' ? 'ojb-btn-primary' : 'ojb-btn-ghost'
+                }`}
+              >
+                <span>
+                  {copiedAccount === 'all-accounts'
+                    ? 'Semua Rekening Tersalin!'
+                    : 'Copy Semua Rekening Sekaligus'}
+                </span>
+                <span className="ojb-btn-icon !w-9 !h-9">
+                  {copiedAccount === 'all-accounts' ? (
+                    <Check className="w-4 h-4" />
+                  ) : (
+                    <Copy className="w-4 h-4 text-[#39FF14]" />
+                  )}
+                </span>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => openWaWithTopic('tarik-tunai')}
+                className="ojb-btn ojb-btn-primary !h-12 !px-4 text-xs cursor-pointer"
+              >
+                <span>Kirim Bukti Transfer via WA</span>
+                <span className="ojb-btn-icon !w-9 !h-9">
+                  <MessageCircle className="w-4 h-4" />
+                </span>
+              </button>
+            </div>
+          </div>
+
+          {/* OPEN ALL-IN-ONE BENTO GRID:
+              Left (7 cols): All 6 Bank & E-Wallet Accounts + Easy Guide
+              Right (5 cols): Open QRIS Card + Open Keagenan Mandiri & BRILink Card */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-stretch">
+            {/* PANEL 01: DAFTAR LENGKAP 6 REKENING BANK & E-WALLET RESMI */}
+            <div
+              id="rekening-resmi"
+              className="lg:col-span-7 ojb-scene scroll-mt-24 flex flex-col justify-between"
+            >
+              <div>
+                <div className="ojb-scene-bar bg-[#050907]">
                   <span className="ojb-dots">
                     <i />
                     <i />
                     <i />
                   </span>
                   <span className="ojb-scene-url" translate="no">
-                    njr-cell://
-                    <b className="text-[#9EFF8A] font-semibold">
-                      {activeStoryStep === 1
-                        ? 'rekening-dan-ewallet'
-                        : activeStoryStep === 2
-                          ? 'qris-resmi-nasional'
-                          : 'profil-agen-resmi'}
-                    </b>
+                    01 · <b className="text-[#9EFF8A] font-semibold">DAFTAR REKENING BANK &amp; E-WALLET RESMI</b>
                   </span>
-                  <span className="font-mono-num">
-                    <b className="text-white">0{activeStoryStep}</b>/03
+                  <span className="font-mono-num text-[#39FF14] font-bold">
+                    {PAYMENT_ACCOUNTS.length} Rekening
                   </span>
                 </div>
 
-                {/* Step Switcher Tabs inside Scene */}
-                <div className="grid grid-cols-3 gap-1.5 p-2.5 bg-[#050907] border-b border-white/[0.06]">
-                  {[
-                    { step: 1 as const, label: '01. Rekening & E-Wallet' },
-                    { step: 2 as const, label: '02. Scan QRIS' },
-                    { step: 3 as const, label: '03. Info & Kode Agen' },
-                  ].map((tab) => (
+                <div className="p-4 sm:p-6">
+                  <div className="flex flex-wrap items-center justify-between gap-2 mb-4 pb-3 border-b border-white/[0.07]">
+                    <div>
+                      <h3 className="text-base sm:text-lg font-extrabold text-white">
+                        1. Nomor Rekening Bank &amp; E-Wallet Resmi NJR CELL
+                      </h3>
+                      <p className="text-xs text-[#8EA394] mt-0.5">
+                        Tekan tombol <b className="text-[#39FF14]">Salin Nomor</b> di samping bank/e-wallet yang ingin Anda tuju.
+                      </p>
+                    </div>
                     <button
-                      key={tab.step}
                       type="button"
-                      onClick={() => setActiveStoryStep(tab.step)}
-                      className={`py-2 px-2.5 rounded-lg text-xs font-semibold transition-all cursor-pointer truncate ${
-                        activeStoryStep === tab.step
-                          ? 'bg-[#39FF14] text-[#041006] font-bold shadow-[0_0_16px_rgba(57,255,20,0.3)]'
-                          : 'bg-white/[0.03] text-[#8EA394] hover:text-white'
+                      onClick={handleCopyAllAccounts}
+                      className={`px-3.5 py-2 rounded-xl text-xs font-bold inline-flex items-center gap-1.5 transition-all cursor-pointer shrink-0 ${
+                        copiedAccount === 'all-accounts'
+                          ? 'bg-[#39FF14] text-[#041006] shadow-[0_0_16px_rgba(57,255,20,0.35)]'
+                          : 'bg-[#39FF14]/15 hover:bg-[#39FF14] text-[#39FF14] hover:text-[#041006] border border-[#39FF14]/35'
                       }`}
                     >
-                      {tab.label}
+                      {copiedAccount === 'all-accounts' ? (
+                        <>
+                          <Check className="w-3.5 h-3.5" />
+                          <span>Semua Tersalin!</span>
+                        </>
+                      ) : (
+                        <>
+                          <Copy className="w-3.5 h-3.5" />
+                          <span>Copy Semua Rekening</span>
+                        </>
+                      )}
                     </button>
-                  ))}
+                  </div>
+
+                  <div className="space-y-2.5">
+                    {PAYMENT_ACCOUNTS.map((acc) => {
+                      const isCopied = copiedAccount === acc.id;
+                      return (
+                        <div
+                          key={acc.id}
+                          className="p-3 sm:p-4 rounded-xl bg-[#070D0A] border border-white/[0.09] hover:border-[#39FF14]/45 transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-3"
+                        >
+                          <div className="flex items-center gap-3.5 min-w-0">
+                            <div className="w-14 h-10 sm:w-16 sm:h-11 rounded-xl bg-white p-1.5 flex items-center justify-center shrink-0 shadow-sm">
+                              <img
+                                src={acc.logoPath}
+                                alt={acc.provider}
+                                className="w-full h-full object-contain"
+                                loading="lazy"
+                              />
+                            </div>
+                            <div className="min-w-0">
+                              <div className="flex flex-wrap items-center gap-1.5">
+                                <span className="text-xs sm:text-sm font-bold text-white">
+                                  {acc.provider}
+                                </span>
+                                <span className="text-[11px] px-2 py-0.5 rounded-md bg-[#39FF14]/10 border border-[#39FF14]/25 text-[#9EFF8A] font-semibold">
+                                  a.n. {acc.accountHolder}
+                                </span>
+                              </div>
+                              <div className="font-mono-num text-base sm:text-lg font-extrabold text-[#39FF14] tracking-wider mt-0.5 break-all">
+                                {acc.displayNumber}
+                              </div>
+                            </div>
+                          </div>
+
+                          <button
+                            type="button"
+                            onClick={() => handleCopyAccount(acc.rawNumber, acc.id)}
+                            className={`px-4 py-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 shrink-0 transition-all cursor-pointer ${
+                              isCopied
+                                ? 'bg-[#39FF14] text-[#041006]'
+                                : 'bg-white/[0.07] hover:bg-[#39FF14] text-white hover:text-[#041006] border border-white/15'
+                            }`}
+                          >
+                            {isCopied ? (
+                              <>
+                                <Check className="w-4 h-4" />
+                                <span>Nomor Tersalin ✓</span>
+                              </>
+                            ) : (
+                              <>
+                                <Copy className="w-4 h-4" />
+                                <span>Salin Nomor</span>
+                              </>
+                            )}
+                          </button>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
+
+              {/* Simple Step-by-Step Guide inside Left Column so heights balance with zero empty gap */}
+              <div className="px-4 pb-4 sm:px-6 sm:pb-6">
+                <div className="p-4 rounded-xl bg-[#050A07] border border-white/[0.08] space-y-2">
+                  <div className="flex items-center gap-2 text-xs font-bold text-[#9EFF8A]">
+                    <ShieldCheck className="w-4 h-4 text-[#39FF14] shrink-0" />
+                    <span>Panduan Mudah Transfer &amp; Tarik Tunai (Untuk Pelanggan Baru):</span>
+                  </div>
+                  <ol className="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs text-[#C5D4C9] pt-1">
+                    <li className="p-2.5 rounded-lg bg-white/[0.02] border border-white/[0.05]">
+                      <b className="text-[#39FF14] block mb-0.5">Langkah 1</b>
+                      Salin nomor rekening / e-wallet di atas atau scan barcode QRIS di samping.
+                    </li>
+                    <li className="p-2.5 rounded-lg bg-white/[0.02] border border-white/[0.05]">
+                      <b className="text-[#39FF14] block mb-0.5">Langkah 2</b>
+                      Pastikan nama tujuan <b>AMIR NURJAMAN</b> (atau <b>AHMAD SIDIK</b> khusus DANA 0831-2000-0303).
+                    </li>
+                    <li className="p-2.5 rounded-lg bg-white/[0.02] border border-white/[0.05]">
+                      <b className="text-[#39FF14] block mb-0.5">Langkah 3</b>
+                      Tunjukkan bukti transfer ke petugas konter atau kirim ke WhatsApp Admin.
+                    </li>
+                  </ol>
+                </div>
+              </div>
+            </div>
+
+            {/* RIGHT COLUMN (5 cols): PANEL 02 (QRIS TERBUKA) + PANEL 03 (KEAGENAN TERBUKA) */}
+            <div className="lg:col-span-5 flex flex-col justify-between gap-5">
+              {/* PANEL 02: QRIS RESMI NASIONAL (DIBUKA LANGSUNG) */}
+              <div id="qris-resmi" className="ojb-scene scroll-mt-24">
+                <div className="ojb-scene-bar bg-[#050907]">
+                  <span className="ojb-dots">
+                    <i />
+                    <i />
+                    <i />
+                  </span>
+                  <span className="ojb-scene-url" translate="no">
+                    02 · <b className="text-[#9EFF8A] font-semibold">BARCODE QRIS RESMI (SEMUA BANK &amp; E-WALLET)</b>
+                  </span>
                 </div>
 
-                {/* Scene Stage Content */}
-                <div className="p-4 sm:p-6">
-                  {activeStoryStep === 1 && (
-                    <div className="space-y-2.5">
-                      <div className="flex flex-wrap items-center justify-between gap-2 mb-3 pb-2.5 border-b border-white/[0.06]">
+                <div className="p-4 sm:p-5 flex flex-col sm:flex-row items-center gap-4">
+                  <div
+                    onClick={() => setQrisLightboxOpen(true)}
+                    className="relative group cursor-pointer bg-white p-2.5 rounded-2xl shadow-lg w-[165px] sm:w-[175px] shrink-0 overflow-hidden"
+                  >
+                    <img
+                      src={QRIS_INFO.imagePath}
+                      alt="QRIS Resmi NJR CELL"
+                      className="w-full h-auto rounded-lg object-contain"
+                    />
+                    <div className="absolute inset-0 bg-black/55 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                      <span className="px-2.5 py-1.5 rounded-lg bg-[#39FF14] text-[#041006] font-bold text-xs flex items-center gap-1">
+                        <Maximize2 className="w-3.5 h-3.5" /> Perbesar
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="flex-1 text-center sm:text-left">
+                    <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#39FF14]/15 border border-[#39FF14]/30 text-[#39FF14] text-[11px] font-bold mb-1.5">
+                      <QrCode className="w-3 h-3" /> Standar QRIS Nasional
+                    </span>
+                    <h3 className="text-base sm:text-lg font-extrabold text-white leading-tight">
+                      2. Scan QRIS: {QRIS_INFO.merchantName}
+                    </h3>
+                    <p className="text-xs font-mono-num font-bold text-[#39FF14] mt-0.5">
+                      NMID: {QRIS_INFO.nmid}
+                    </p>
+                    <p className="text-xs text-[#8EA394] mt-2 leading-relaxed">
+                      Bisa di-scan langsung dari BRImo, Livin&apos; Mandiri, BCA, SeaBank, DANA, OVO, GoPay, &amp; ShopeePay tanpa ketik nomor rekening.
+                    </p>
+
+                    <div className="grid grid-cols-2 gap-2 mt-3.5">
+                      <button
+                        type="button"
+                        onClick={() => setQrisLightboxOpen(true)}
+                        className="py-2.5 px-3 rounded-xl bg-[#39FF14] hover:bg-[#5BFF3D] text-[#041006] font-bold text-xs inline-flex items-center justify-center gap-1.5 transition-all cursor-pointer"
+                      >
+                        <Maximize2 className="w-3.5 h-3.5" />
+                        <span>Perbesar QRIS</span>
+                      </button>
+                      <a
+                        href={QRIS_INFO.imagePath}
+                        download="QRIS-NJR-CELL.png"
+                        className="py-2.5 px-3 rounded-xl bg-white/[0.06] hover:bg-white/[0.12] border border-white/15 text-white font-bold text-xs inline-flex items-center justify-center gap-1.5 transition-all"
+                      >
+                        <Download className="w-3.5 h-3.5 text-[#39FF14]" />
+                        <span>Simpan QRIS</span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* PANEL 03: KEAGENAN RESMI MANDIRI & BRILINK · JARINGAN BERSAMA (DIBUKA LANGSUNG) */}
+              <div id="keagenan-resmi" className="ojb-scene scroll-mt-24 flex-1 flex flex-col justify-between">
+                <div>
+                  <div className="ojb-scene-bar bg-[#050907]">
+                    <span className="ojb-dots">
+                      <i />
+                      <i />
+                      <i />
+                    </span>
+                    <span className="ojb-scene-url" translate="no">
+                      03 · <b className="text-[#9EFF8A] font-semibold">KEAGENAN RESMI PERBANKAN &amp; JARINGAN BERSAMA</b>
+                    </span>
+                  </div>
+
+                  <div className="p-4 sm:p-5 space-y-3.5">
+                    <div>
+                      <h3 className="text-base sm:text-lg font-extrabold text-white">
+                        3. Identitas Keagenan Resmi Bank &amp; Jaringan ATM
+                      </h3>
+                      <p className="text-xs text-[#8EA394] mt-0.5">
+                        Terdaftar resmi Agen Mandiri (Kode: {BRAND_INFO.mandiriAgentCode}) &amp; BRILink (Kode: {BRAND_INFO.brilinkAgentCode}) · {BRAND_INFO.atmNetwork}.
+                      </p>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                      {/* Agen Mandiri Card */}
+                      <div className="p-3.5 rounded-xl bg-[#070D0A] border border-[#39FF14]/25 flex flex-col justify-between gap-2">
                         <div>
-                          <span className="text-xs font-bold uppercase tracking-wider text-[#9EFF8A] block">
-                            Daftar Rekening &amp; E-Wallet Resmi ({PAYMENT_ACCOUNTS.length})
+                          <span className="text-[11px] font-semibold text-[#9EFF8A] block">
+                            Kode Agen Mandiri Resmi
                           </span>
-                          <span className="text-[11px] text-[#8EA394] block">
-                            Ketuk Salin per rekening atau salin seluruhnya sekaligus
+                          <span className="font-mono-num text-xl font-extrabold text-[#39FF14] mt-0.5 block">
+                            {BRAND_INFO.mandiriAgentCode}
+                          </span>
+                          <span className="text-[11px] text-[#8EA394] mt-0.5 block">
+                            Setor, tarik tunai &amp; transfer Bank Mandiri
                           </span>
                         </div>
                         <button
                           type="button"
-                          onClick={handleCopyAllAccounts}
-                          className={`px-3 py-2 rounded-xl text-xs font-bold inline-flex items-center gap-1.5 transition-all cursor-pointer shrink-0 ${
-                            copiedAccount === 'all-accounts'
-                              ? 'bg-[#39FF14] text-[#041006] shadow-[0_0_16px_rgba(57,255,20,0.35)]'
-                              : 'bg-[#39FF14]/15 hover:bg-[#39FF14] text-[#39FF14] hover:text-[#041006] border border-[#39FF14]/35'
-                          }`}
+                          onClick={() => handleCopyAccount(BRAND_INFO.mandiriAgentCode, 'kode-mandiri')}
+                          className="w-full py-1.5 px-2.5 rounded-lg bg-white/[0.06] hover:bg-[#39FF14] text-white hover:text-[#041006] border border-white/10 text-[11px] font-bold flex items-center justify-center gap-1 transition-all cursor-pointer"
                         >
-                          {copiedAccount === 'all-accounts' ? (
+                          {copiedAccount === 'kode-mandiri' ? (
                             <>
                               <Check className="w-3.5 h-3.5" />
-                              <span>Semua Rekening Tersalin!</span>
+                              <span>Kode Tersalin ✓</span>
                             </>
                           ) : (
                             <>
                               <Copy className="w-3.5 h-3.5" />
-                              <span>Copy Semua Rekening</span>
+                              <span>Salin Kode Mandiri</span>
                             </>
                           )}
                         </button>
                       </div>
-                      {PAYMENT_ACCOUNTS.map((acc) => {
-                        const isCopied = copiedAccount === acc.id;
-                        return (
-                          <div
-                            key={acc.id}
-                            className="p-3 sm:p-3.5 rounded-xl bg-[#070D0A] border border-white/[0.08] hover:border-[#39FF14]/40 transition-all flex items-center justify-between gap-3"
-                          >
-                            <div className="flex items-center gap-3 min-w-0">
-                              <div className="w-12 h-9 sm:w-14 sm:h-10 rounded-lg bg-white p-1.5 flex items-center justify-center shrink-0 shadow-sm">
-                                <img
-                                  src={acc.logoPath}
-                                  alt={acc.provider}
-                                  className="w-full h-full object-contain"
-                                  loading="lazy"
-                                />
-                              </div>
-                              <div className="min-w-0">
-                                <div className="flex flex-wrap items-center gap-1.5">
-                                  <span className="text-xs font-bold text-white">{acc.provider}</span>
-                                  <span className="text-[10px] px-1.5 py-0.5 rounded bg-white/[0.05] text-[#8EA394]">
-                                    a.n. {acc.accountHolder}
-                                  </span>
-                                </div>
-                                <div className="font-mono-num text-sm sm:text-base font-bold text-[#39FF14] tracking-wider truncate mt-0.5">
-                                  {acc.displayNumber}
-                                </div>
-                              </div>
-                            </div>
 
-                            <button
-                              type="button"
-                              onClick={() => handleCopyAccount(acc.rawNumber, acc.id)}
-                              className={`px-3 py-2 rounded-lg text-xs font-bold flex items-center gap-1.5 shrink-0 transition-all cursor-pointer ${
-                                isCopied
-                                  ? 'bg-[#39FF14] text-[#041006]'
-                                  : 'bg-white/[0.06] hover:bg-[#39FF14]/15 text-white hover:text-[#39FF14] border border-white/10'
-                              }`}
-                            >
-                              {isCopied ? (
-                                <>
-                                  <Check className="w-3.5 h-3.5" />
-                                  <span>Tersalin</span>
-                                </>
-                              ) : (
-                                <>
-                                  <Copy className="w-3.5 h-3.5" />
-                                  <span>Salin</span>
-                                </>
-                              )}
-                            </button>
-                          </div>
-                        );
-                      })}
-                    </div>
-                  )}
-
-                  {activeStoryStep === 2 && (
-                    <div className="flex flex-col items-center text-center py-2">
-                      <div
-                        onClick={() => setQrisLightboxOpen(true)}
-                        className="relative group cursor-pointer bg-white p-3 rounded-2xl shadow-lg max-w-[240px] w-full mb-4 overflow-hidden"
-                      >
-                        <img
-                          src={QRIS_INFO.imagePath}
-                          alt="QRIS Resmi NJR CELL"
-                          className="w-full h-auto rounded-lg object-contain"
-                        />
-                        <div className="absolute inset-0 bg-black/55 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                          <span className="px-3 py-1.5 rounded-lg bg-[#39FF14] text-[#041006] font-bold text-xs flex items-center gap-1.5">
-                            <Maximize2 className="w-3.5 h-3.5" /> Perbesar QRIS
+                      {/* Agen BRILink Card */}
+                      <div className="p-3.5 rounded-xl bg-[#070D0A] border border-[#39FF14]/25 flex flex-col justify-between gap-2">
+                        <div>
+                          <span className="text-[11px] font-semibold text-[#9EFF8A] block">
+                            Kode Agen BRILink Resmi
                           </span>
-                        </div>
-                      </div>
-                      <p className="text-sm font-bold text-white">
-                        Merchant: {QRIS_INFO.merchantName}
-                      </p>
-                      <p className="text-xs font-mono-num text-[#39FF14] mt-0.5 mb-4">
-                        NMID: {QRIS_INFO.nmid}
-                      </p>
-                      <div className="flex flex-wrap justify-center gap-2.5 w-full">
-                        <button
-                          type="button"
-                          onClick={() => setQrisLightboxOpen(true)}
-                          className="ojb-btn ojb-btn-primary !h-11 !px-4 text-xs cursor-pointer"
-                        >
-                          <span>Perbesar Layar Penuh</span>
-                          <span className="ojb-btn-icon !w-8 !h-8">
-                            <QrCode className="w-4 h-4" />
-                          </span>
-                        </button>
-                        <a
-                          href={QRIS_INFO.imagePath}
-                          download="QRIS-NJR-CELL.png"
-                          className="ojb-btn ojb-btn-ghost !h-11 !px-4 text-xs"
-                        >
-                          <span>Unduh QRIS</span>
-                          <span className="ojb-btn-icon !w-8 !h-8">
-                            <Download className="w-4 h-4" />
-                          </span>
-                        </a>
-                      </div>
-                    </div>
-                  )}
-
-                  {activeStoryStep === 3 && (
-                    <div className="space-y-4">
-                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                        <div className="p-4 rounded-xl bg-[#070D0A] border border-white/[0.08]">
-                          <span className="text-[11px] text-[#8EA394] block">Kode Agen Mandiri Resmi</span>
-                          <span className="font-mono-num text-xl font-extrabold text-[#39FF14] mt-1 block">
-                            {BRAND_INFO.mandiriAgentCode}
-                          </span>
-                          <span className="text-xs text-[#C5D4C9] mt-1 block">
-                            Mitra resmi Bank Mandiri untuk setor, tarik &amp; transfer.
-                          </span>
-                        </div>
-                        <div className="p-4 rounded-xl bg-[#070D0A] border border-white/[0.08]">
-                          <span className="text-[11px] text-[#8EA394] block">Kode Agen BRILink Resmi</span>
-                          <span className="font-mono-num text-xl font-extrabold text-[#39FF14] mt-1 block">
+                          <span className="font-mono-num text-xl font-extrabold text-[#39FF14] mt-0.5 block">
                             {BRAND_INFO.brilinkAgentCode}
                           </span>
-                          <span className="text-xs text-[#C5D4C9] mt-1 block">
-                            Terdaftar resmi Agen BRILink untuk perbankan &amp; PPOB.
+                          <span className="text-[11px] text-[#8EA394] mt-0.5 block">
+                            Setor, tarik tunai, BRIVA &amp; transfer BRI
                           </span>
-                        </div>
-                        <div className="p-4 rounded-xl bg-[#070D0A] border border-white/[0.08]">
-                          <span className="text-[11px] text-[#8EA394] block">Jaringan &amp; Portal 24 Jam</span>
-                          <span className="text-lg font-extrabold text-white mt-1 block">
-                            {BRAND_INFO.atmNetwork}
-                          </span>
-                          <span className="text-xs text-[#39FF14] mt-1 block">
-                            Buylink 24 jam &amp; konter Sukajadi / Ciherang
-                          </span>
-                        </div>
-                      </div>
-
-                      <div className="p-4 rounded-xl bg-[#39FF14]/[0.07] border border-[#39FF14]/25 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
-                        <div className="text-xs text-[#C5D4C9] leading-relaxed">
-                          <b className="text-white block mb-0.5">Konfirmasi Bukti Transfer Cepat</b>
-                          Kirim screenshot bukti transfer atau QRIS ke WhatsApp Admin agar langsung diproses.
                         </div>
                         <button
                           type="button"
-                          onClick={() => openWaWithTopic('tarik-tunai')}
-                          className="ojb-wa-cta !h-10 !px-3.5 text-xs shrink-0 cursor-pointer"
+                          onClick={() => handleCopyAccount(BRAND_INFO.brilinkAgentCode, 'kode-brilink')}
+                          className="w-full py-1.5 px-2.5 rounded-lg bg-white/[0.06] hover:bg-[#39FF14] text-white hover:text-[#041006] border border-white/10 text-[11px] font-bold flex items-center justify-center gap-1 transition-all cursor-pointer"
                         >
-                          <MessageCircle className="w-3.5 h-3.5" />
-                          <span>Konfirmasi WA</span>
+                          {copiedAccount === 'kode-brilink' ? (
+                            <>
+                              <Check className="w-3.5 h-3.5" />
+                              <span>Kode Tersalin ✓</span>
+                            </>
+                          ) : (
+                            <>
+                              <Copy className="w-3.5 h-3.5" />
+                              <span>Salin Kode BRILink</span>
+                            </>
+                          )}
                         </button>
                       </div>
                     </div>
-                  )}
+
+                    {/* Jaringan BERSAMA + Konfirmasi WA Box */}
+                    <div className="p-3.5 rounded-xl bg-[#39FF14]/[0.07] border border-[#39FF14]/25 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                      <div className="text-xs text-[#C5D4C9] leading-relaxed">
+                        <b className="text-[#39FF14] block mb-0.5">
+                          {BRAND_INFO.atmNetwork} · Mesin EDC &amp; Mini ATM Konter
+                        </b>
+                        Melayani transaksi seluruh kartu ATM bank nasional &amp; bantuan langsung di konter Sukajadi dan Ciherang.
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => openWaWithTopic('mandiri-agen')}
+                        className="ojb-wa-cta !h-10 !px-3.5 text-xs shrink-0 cursor-pointer"
+                      >
+                        <MessageCircle className="w-3.5 h-3.5" />
+                        <span>Tanya Admin</span>
+                      </button>
+                    </div>
+                  </div>
                 </div>
 
-                <p className="px-4 py-3 border-t border-white/[0.06] text-center font-mono-num text-[11px] text-[#687D6F]">
-                  Seluruh transaksi dilayani secara resmi oleh {BRAND_INFO.name} · Ciamis
+                <p className="px-4 py-2.5 border-t border-white/[0.06] text-center font-mono-num text-[11px] text-[#687D6F]">
+                  Terdaftar resmi Agen Mandiri ({BRAND_INFO.mandiriAgentCode}) &amp; BRILink ({BRAND_INFO.brilinkAgentCode}) · {BRAND_INFO.atmNetwork}
                 </p>
               </div>
             </div>
           </div>
 
-          {/* Good to know bar (ojailbreaks.com .good-to-know style) */}
-          <div className="mt-10 pt-6 border-t border-white/[0.08] flex flex-col sm:flex-row sm:items-baseline justify-between gap-4">
+          {/* Info Penting Bar */}
+          <div className="mt-6 pt-5 border-t border-white/[0.08] flex flex-col sm:flex-row sm:items-baseline justify-between gap-4">
             <div className="flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-6">
               <span className="text-sm font-bold text-[#9EFF8A] whitespace-nowrap">
                 Info Penting Pelanggan

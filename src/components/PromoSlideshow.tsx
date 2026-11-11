@@ -246,12 +246,11 @@ export const PromoSlideshow: React.FC<PromoSlideshowProps> = ({
   }, [activeSlide]);
 
   return (
-    <section
-      id="promo"
+    <div
       aria-label="Galeri Informasi dan Promosi Layanan NJR CELL"
-      className="py-12 md:py-16 border-b border-white/10"
+      className="w-full"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="w-full">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6">
           <div>
             <div className="flex flex-wrap items-center gap-2.5 mb-1.5">
@@ -491,6 +490,6 @@ export const PromoSlideshow: React.FC<PromoSlideshowProps> = ({
         slides={isUsingFallback ? FALLBACK_CMS_SLIDES : cmsSlides}
         isUsingFallback={isUsingFallback}
       />
-    </section>
+    </div>
   );
 };
