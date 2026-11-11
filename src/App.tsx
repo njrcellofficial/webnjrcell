@@ -186,7 +186,6 @@ export function App() {
         (acc) => `• ${acc.provider}: ${acc.rawNumber} (a.n. ${acc.accountHolder})`
       ),
       `• QRIS Resmi: ${QRIS_INFO.merchantName} (NMID: ${QRIS_INFO.nmid})`,
-      `Terdaftar resmi Agen Mandiri (Kode: ${BRAND_INFO.mandiriAgentCode}) & BRILink (Kode: ${BRAND_INFO.brilinkAgentCode}) · ${BRAND_INFO.atmNetwork}`,
     ];
     navigator.clipboard.writeText(lines.join('\n'));
     setCopiedAccount('all-accounts');
@@ -380,15 +379,16 @@ export function App() {
 
           {/* Right Header Actions */}
           <div className="ojb-header-actions">
-            {/* Quick Find Button (Hidden on mobile header, moved to mobile menu like ojailbreaks.com) */}
+            {/* Quick Find Button (Visible on Desktop & Mobile Header) */}
             <button
               type="button"
               onClick={() => setQuickSearchOpen(true)}
               className="ojb-quick-btn cursor-pointer"
               aria-label="Cari Layanan Cepat (Ctrl + K)"
             >
-              <Search className="w-4 h-4 text-[#9EFF8A]" />
-              <span>Quick find</span>
+              <Search className="w-4 h-4 text-[#39FF14] shrink-0" />
+              <span className="sm:hidden font-semibold text-white">Cari</span>
+              <span className="hidden sm:inline">Cari layanan</span>
               <kbd className="ojb-kbd">Ctrl K</kbd>
             </button>
 
@@ -515,11 +515,6 @@ export function App() {
 
           {/* LEFT / TOP COLUMN: HERO INTRO + QUICK HUB STATUS CARD */}
           <div className="ojb-lib-intro">
-            <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-[#0B150E]/80 border border-[#39FF14]/25 text-[#9EFF8A] text-xs font-medium mb-3.5 backdrop-blur-md">
-              <span className="w-2 h-2 rounded-full bg-[#39FF14] shadow-[0_0_10px_#39FF14]" />
-              <span>Modern Dark Digital Service Hub</span>
-            </div>
-
             <h1
               id="hero-title"
               className="ojb-hero-title"
@@ -538,6 +533,24 @@ export function App() {
             <p className="ojb-hero-description">
               Solusi transaksi keuangan, pembayaran digital, internet, aksesoris dan kebutuhan harian Anda. Lebih dekat, mudah dan praktis bersama NJR CELL.
             </p>
+
+            {/* Mobile & Tablet Search Bar right in Hero so HP users immediately see Search without scrolling */}
+            <div className="xl:hidden mb-3.5">
+              <button
+                type="button"
+                onClick={() => setQuickSearchOpen(true)}
+                className="ojb-search w-full text-left cursor-pointer"
+                aria-label="Cari layanan NJR CELL"
+              >
+                <Search className="w-5 h-5 text-[#39FF14] shrink-0" />
+                <span className="flex-1 text-xs sm:text-sm text-[#A3B8A9] truncate">
+                  Cari layanan (transfer, kuota, token, QRIS)…
+                </span>
+                <span className="px-2.5 py-1 rounded-lg bg-[#39FF14]/15 border border-[#39FF14]/35 text-[11px] font-bold text-[#39FF14] shrink-0">
+                  Cari
+                </span>
+              </button>
+            </div>
 
             {/* 2x2 Balanced CTA Grid — Zero uneven wrapping or empty gaps */}
             <div className="ojb-lib-cta">
@@ -1312,7 +1325,7 @@ export function App() {
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                       {/* Agen Mandiri Card */}
-                      <div className="p-3.5 rounded-xl bg-[#070D0A] border border-[#39FF14]/25 flex flex-col justify-between gap-2">
+                      <div className="p-3.5 rounded-xl bg-[#070D0A] border border-[#39FF14]/25 flex flex-col justify-between gap-2.5">
                         <div>
                           <span className="text-[11px] font-semibold text-[#9EFF8A] block">
                             Kode Agen Mandiri Resmi
@@ -1324,27 +1337,14 @@ export function App() {
                             Setor, tarik tunai &amp; transfer Bank Mandiri
                           </span>
                         </div>
-                        <button
-                          type="button"
-                          onClick={() => handleCopyAccount(BRAND_INFO.mandiriAgentCode, 'kode-mandiri')}
-                          className="w-full py-1.5 px-2.5 rounded-lg bg-white/[0.06] hover:bg-[#39FF14] text-white hover:text-[#041006] border border-white/10 text-[11px] font-bold flex items-center justify-center gap-1 transition-all cursor-pointer"
-                        >
-                          {copiedAccount === 'kode-mandiri' ? (
-                            <>
-                              <Check className="w-3.5 h-3.5" />
-                              <span>Kode Tersalin ✓</span>
-                            </>
-                          ) : (
-                            <>
-                              <Copy className="w-3.5 h-3.5" />
-                              <span>Salin Kode Mandiri</span>
-                            </>
-                          )}
-                        </button>
+                        <div className="pt-2 border-t border-white/[0.06] flex items-center gap-1.5 text-[11px] font-semibold text-[#9EFF8A]">
+                          <ShieldCheck className="w-3.5 h-3.5 text-[#39FF14] shrink-0" />
+                          <span>Identitas Keagenan Resmi</span>
+                        </div>
                       </div>
 
                       {/* Agen BRILink Card */}
-                      <div className="p-3.5 rounded-xl bg-[#070D0A] border border-[#39FF14]/25 flex flex-col justify-between gap-2">
+                      <div className="p-3.5 rounded-xl bg-[#070D0A] border border-[#39FF14]/25 flex flex-col justify-between gap-2.5">
                         <div>
                           <span className="text-[11px] font-semibold text-[#9EFF8A] block">
                             Kode Agen BRILink Resmi
@@ -1356,23 +1356,10 @@ export function App() {
                             Setor, tarik tunai, BRIVA &amp; transfer BRI
                           </span>
                         </div>
-                        <button
-                          type="button"
-                          onClick={() => handleCopyAccount(BRAND_INFO.brilinkAgentCode, 'kode-brilink')}
-                          className="w-full py-1.5 px-2.5 rounded-lg bg-white/[0.06] hover:bg-[#39FF14] text-white hover:text-[#041006] border border-white/10 text-[11px] font-bold flex items-center justify-center gap-1 transition-all cursor-pointer"
-                        >
-                          {copiedAccount === 'kode-brilink' ? (
-                            <>
-                              <Check className="w-3.5 h-3.5" />
-                              <span>Kode Tersalin ✓</span>
-                            </>
-                          ) : (
-                            <>
-                              <Copy className="w-3.5 h-3.5" />
-                              <span>Salin Kode BRILink</span>
-                            </>
-                          )}
-                        </button>
+                        <div className="pt-2 border-t border-white/[0.06] flex items-center gap-1.5 text-[11px] font-semibold text-[#9EFF8A]">
+                          <ShieldCheck className="w-3.5 h-3.5 text-[#39FF14] shrink-0" />
+                          <span>Identitas Keagenan Resmi</span>
+                        </div>
                       </div>
                     </div>
 
@@ -2265,7 +2252,7 @@ export function App() {
       ===================================================================== */}
       {qrisLightboxOpen && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md"
+          className="fixed inset-0 z-[110] flex items-center justify-center p-4 bg-black/85 backdrop-blur-md"
           role="dialog"
           aria-modal="true"
           aria-label="QRIS Resmi NJR CELL"

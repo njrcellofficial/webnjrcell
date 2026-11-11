@@ -1326,12 +1326,41 @@
     height: 58px;
     padding: 0 8px 0 12px;
   }
-  .ojb-header .ojb-quick-btn,
   .ojb-header .ojb-admin-top-btn {
     display: none;
   }
+  .ojb-header .ojb-quick-btn {
+    height: 40px;
+    padding: 0 10px;
+    gap: 6px;
+    border-radius: 11px;
+    border-color: var(--line-2);
+    background: rgba(10, 18, 13, 0.78);
+    font-size: 12px;
+  }
+  .ojb-header .ojb-quick-btn .ojb-kbd {
+    display: none;
+  }
   .ojb-wa-cta {
-    padding: 0 13px 0 11px;
+    height: 40px;
+    padding: 0 11px 0 10px;
+    font-size: 12.5px;
+    border-radius: 11px;
+  }
+  .ojb-menu-toggle {
+    width: 40px;
+    height: 40px;
+    border-radius: 11px;
+  }
+  .ojb-menu-toggle span:first-child {
+    top: 15px;
+  }
+  .ojb-menu-toggle span:last-child {
+    top: 23px;
+  }
+  .ojb-menu-toggle[aria-expanded="true"] span:first-child,
+  .ojb-menu-toggle[aria-expanded="true"] span:last-child {
+    top: 19px;
   }
   .ojb-wa-long {
     display: none;
