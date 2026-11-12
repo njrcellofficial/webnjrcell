@@ -1,6 +1,6 @@
 {
   "name": "NJR CELL — Layanan Digital, Transfer Bank & Aksesori HP Ciamis",
-  "description": "NJR CELL (NJRCELL) melayani transfer & tarik tunai, Mandiri Agen, BRILink, pulsa, paket internet, top up game, PPOB, dan aksesori HP di Ciherang & Sukajadi, Ciamis.",
+  "description": "NJR CELL (NJRCELL) menyediakan layanan Mini ATM EDC: fasilitas Agen BRILink (ID: 12400836) & Mandiri Agen (ID: 2407196). Dibantu petugas, PIN dimasukkan sendiri: tarik/setor tunai, transfer, pencairan bantuan sosial PKH & BPNT (KKS), BRIVA, cicilan bank, dan pencairan e-wallet tanpa biaya tambahan di Ciherang (Banjarsari) & Sukajadi (Pamarican), Ciamis.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

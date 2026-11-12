@@ -1089,9 +1089,7 @@ export function App() {
             </div>
           </div>
 
-          {/* OPEN ALL-IN-ONE BENTO GRID:
-              Left (7 cols): All 6 Bank & E-Wallet Accounts + Easy Guide
-              Right (5 cols): Open QRIS Card + Open Keagenan Mandiri & BRILink Card */}
+          {/* ROW 1: PANEL 01 (REKENING) & PANEL 02 (SCAN QRIS) DISEJAJARKAN BERDAMPINGAN */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-stretch">
             {/* PANEL 01: DAFTAR LENGKAP 6 REKENING BANK & E-WALLET RESMI */}
             <div
@@ -1205,36 +1203,14 @@ export function App() {
                   </div>
                 </div>
               </div>
-
-              {/* Simple Step-by-Step Guide inside Left Column so heights balance with zero empty gap */}
-              <div className="px-4 pb-4 sm:px-6 sm:pb-6">
-                <div className="p-4 rounded-xl bg-[#050A07] border border-white/[0.08] space-y-2">
-                  <div className="flex items-center gap-2 text-xs font-bold text-[#9EFF8A]">
-                    <ShieldCheck className="w-4 h-4 text-[#39FF14] shrink-0" />
-                    <span>Panduan Mudah Transfer &amp; Tarik Tunai (Untuk Pelanggan Baru):</span>
-                  </div>
-                  <ol className="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs text-[#C5D4C9] pt-1">
-                    <li className="p-2.5 rounded-lg bg-white/[0.02] border border-white/[0.05]">
-                      <b className="text-[#39FF14] block mb-0.5">Langkah 1</b>
-                      Salin nomor rekening / e-wallet di atas atau scan barcode QRIS di samping.
-                    </li>
-                    <li className="p-2.5 rounded-lg bg-white/[0.02] border border-white/[0.05]">
-                      <b className="text-[#39FF14] block mb-0.5">Langkah 2</b>
-                      Pastikan nama tujuan <b>AMIR NURJAMAN</b> (atau <b>AHMAD SIDIK</b> khusus DANA 0831-2000-0303).
-                    </li>
-                    <li className="p-2.5 rounded-lg bg-white/[0.02] border border-white/[0.05]">
-                      <b className="text-[#39FF14] block mb-0.5">Langkah 3</b>
-                      Tunjukkan bukti transfer ke petugas konter atau kirim ke WhatsApp Admin.
-                    </li>
-                  </ol>
-                </div>
-              </div>
             </div>
 
-            {/* RIGHT COLUMN (5 cols): PANEL 02 (QRIS TERBUKA) + PANEL 03 (KEAGENAN TERBUKA) */}
-            <div className="lg:col-span-5 flex flex-col justify-between gap-5">
-              {/* PANEL 02: QRIS RESMI NASIONAL (DIBUKA LANGSUNG) */}
-              <div id="qris-resmi" className="ojb-scene scroll-mt-24">
+            {/* PANEL 02: QRIS RESMI NASIONAL (DISEJAJARKAN DI SAMPING PANEL 01) */}
+            <div
+              id="qris-resmi"
+              className="lg:col-span-5 ojb-scene scroll-mt-24 flex flex-col justify-between"
+            >
+              <div>
                 <div className="ojb-scene-bar bg-[#050907]">
                   <span className="ojb-dots">
                     <i />
@@ -1299,95 +1275,198 @@ export function App() {
                 </div>
               </div>
 
-              {/* PANEL 03: KEAGENAN RESMI MANDIRI & BRILINK · JARINGAN BERSAMA (DIBUKA LANGSUNG) */}
-              <div id="keagenan-resmi" className="ojb-scene scroll-mt-24 flex-1 flex flex-col justify-between">
-                <div>
-                  <div className="ojb-scene-bar bg-[#050907]">
-                    <span className="ojb-dots">
-                      <i />
-                      <i />
-                      <i />
-                    </span>
-                    <span className="ojb-scene-url" translate="no">
-                      03 · <b className="text-[#9EFF8A] font-semibold">KEAGENAN RESMI PERBANKAN &amp; JARINGAN BERSAMA</b>
-                    </span>
+              {/* Panduan Mudah Transaksi di bawah QRIS */}
+              <div className="p-4 sm:p-5 pt-0">
+                <div className="p-3.5 rounded-xl bg-[#050A07] border border-white/[0.08] space-y-2">
+                  <div className="flex items-center gap-2 text-xs font-bold text-[#9EFF8A]">
+                    <ShieldCheck className="w-4 h-4 text-[#39FF14] shrink-0" />
+                    <span>Panduan Mudah Transaksi (Pelanggan Baru):</span>
                   </div>
+                  <ol className="space-y-1.5 text-xs text-[#C5D4C9] pt-1">
+                    <li className="p-2 rounded-lg bg-white/[0.02] border border-white/[0.05] flex items-start gap-2">
+                      <span className="font-mono-num font-bold text-[#39FF14] shrink-0">1.</span>
+                      <span>Salin nomor rekening/e-wallet di samping atau scan barcode QRIS di atas.</span>
+                    </li>
+                    <li className="p-2 rounded-lg bg-white/[0.02] border border-white/[0.05] flex items-start gap-2">
+                      <span className="font-mono-num font-bold text-[#39FF14] shrink-0">2.</span>
+                      <span>Pastikan nama tujuan <b>AMIR NURJAMAN</b> (atau <b>AHMAD SIDIK</b> khusus DANA 0831-2000-0303).</span>
+                    </li>
+                    <li className="p-2 rounded-lg bg-white/[0.02] border border-white/[0.05] flex items-start gap-2">
+                      <span className="font-mono-num font-bold text-[#39FF14] shrink-0">3.</span>
+                      <span>Tunjukkan bukti transaksi ke petugas konter atau kirim ke WhatsApp Admin.</span>
+                    </li>
+                  </ol>
+                </div>
+              </div>
+            </div>
+          </div>
 
-                  <div className="p-4 sm:p-5 space-y-3.5">
-                    <div>
-                      <h3 className="text-base sm:text-lg font-extrabold text-white">
-                        3. Identitas Keagenan Resmi Bank &amp; Jaringan ATM
-                      </h3>
-                      <p className="text-xs text-[#8EA394] mt-0.5">
-                        Terdaftar resmi Agen Mandiri (Kode: {BRAND_INFO.mandiriAgentCode}) &amp; BRILink (Kode: {BRAND_INFO.brilinkAgentCode}) · {BRAND_INFO.atmNetwork}.
-                      </p>
+          {/* ROW 2: PANEL 03 (MINI ATM, BANTUAN SOSIAL & KEAGENAN RESMI) DI BAWAH SECARA LEBAR & RAPI */}
+          <div id="keagenan-resmi" className="ojb-scene scroll-mt-24 mt-6">
+            <div>
+              <div className="ojb-scene-bar bg-[#050907]">
+                <span className="ojb-dots">
+                  <i />
+                  <i />
+                  <i />
+                </span>
+                <span className="ojb-scene-url" translate="no">
+                  03 · <b className="text-[#9EFF8A] font-semibold">MINI ATM KEAGENAN RESMI &amp; TRANSAKSI PERBANKAN</b>
+                </span>
+              </div>
+
+              <div className="p-4 sm:p-6 space-y-4">
+                <div>
+                  <h3 className="text-base sm:text-lg font-extrabold text-white">
+                    3. Layanan Mini ATM Berbasis EDC dengan Bantuan Petugas
+                  </h3>
+                  <p className="text-xs text-[#8EA394] mt-0.5 leading-relaxed">
+                    Transaksi perbankan melalui fasilitas resmi Agen BRILink (ID: {BRAND_INFO.brilinkAgentCode}) dan jaringan ATM Bersama yang tersedia, serta fasilitas Mandiri Agen (ID: {BRAND_INFO.mandiriAgentCode}).
+                  </p>
+                </div>
+
+                {/* Edukasi Keunggulan Mini ATM NJR CELL vs ATM Konvensional */}
+                <div className="p-4 sm:p-5 rounded-xl bg-gradient-to-br from-[#0B170F] to-[#050906] border border-[#39FF14]/30 space-y-3">
+                  <div className="flex items-center gap-2 text-xs font-bold text-[#39FF14]">
+                    <ShieldCheck className="w-4 h-4 shrink-0" />
+                    <span>Bingung Menggunakan ATM? Transaksi Lebih Nyaman di NJR CELL</span>
+                  </div>
+                  <p className="text-xs sm:text-sm text-[#D1DDD5] leading-relaxed">
+                    “Bingung menggunakan ATM? Tidak perlu khawatir. Di NJR CELL, Anda dibantu petugas untuk memilih dan memahami jenis transaksi. Cukup periksa transaksi, masukkan PIN sendiri, dan setelah selesai Anda mendapatkan penjelasan serta struk bukti transaksi. Lebih mudah, lebih nyaman, dan tidak perlu bingung menghadapi banyak menu ATM.”
+                  </p>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5 pt-2 border-t border-white/[0.08] text-[11px] text-[#A3B8A9]">
+                    <div className="flex items-start gap-1.5 p-2 rounded-lg bg-black/30 border border-white/[0.04]">
+                      <Check className="w-3.5 h-3.5 text-[#39FF14] shrink-0 mt-0.5" />
+                      <span><b>Diarahkan Petugas:</b> Petugas membantu menjelaskan dan mengarahkan jenis transaksi.</span>
                     </div>
-
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                      {/* Agen Mandiri Card */}
-                      <div className="p-3.5 rounded-xl bg-[#070D0A] border border-[#39FF14]/25 flex flex-col justify-between gap-2.5">
-                        <div>
-                          <span className="text-[11px] font-semibold text-[#9EFF8A] block">
-                            Kode Agen Mandiri Resmi
-                          </span>
-                          <span className="font-mono-num text-xl font-extrabold text-[#39FF14] mt-0.5 block">
-                            {BRAND_INFO.mandiriAgentCode}
-                          </span>
-                          <span className="text-[11px] text-[#8EA394] mt-0.5 block">
-                            Setor, tarik tunai &amp; transfer Bank Mandiri
-                          </span>
-                        </div>
-                        <div className="pt-2 border-t border-white/[0.06] flex items-center gap-1.5 text-[11px] font-semibold text-[#9EFF8A]">
-                          <ShieldCheck className="w-3.5 h-3.5 text-[#39FF14] shrink-0" />
-                          <span>Identitas Keagenan Resmi</span>
-                        </div>
-                      </div>
-
-                      {/* Agen BRILink Card */}
-                      <div className="p-3.5 rounded-xl bg-[#070D0A] border border-[#39FF14]/25 flex flex-col justify-between gap-2.5">
-                        <div>
-                          <span className="text-[11px] font-semibold text-[#9EFF8A] block">
-                            Kode Agen BRILink Resmi
-                          </span>
-                          <span className="font-mono-num text-xl font-extrabold text-[#39FF14] mt-0.5 block">
-                            {BRAND_INFO.brilinkAgentCode}
-                          </span>
-                          <span className="text-[11px] text-[#8EA394] mt-0.5 block">
-                            Setor, tarik tunai, BRIVA &amp; transfer BRI
-                          </span>
-                        </div>
-                        <div className="pt-2 border-t border-white/[0.06] flex items-center gap-1.5 text-[11px] font-semibold text-[#9EFF8A]">
-                          <ShieldCheck className="w-3.5 h-3.5 text-[#39FF14] shrink-0" />
-                          <span>Identitas Keagenan Resmi</span>
-                        </div>
-                      </div>
+                    <div className="flex items-start gap-1.5 p-2 rounded-lg bg-black/30 border border-white/[0.04]">
+                      <Check className="w-3.5 h-3.5 text-[#39FF14] shrink-0 mt-0.5" />
+                      <span><b>Periksa Transaksi:</b> Pelanggan dapat memeriksa jenis dan nominal sebelum diproses.</span>
                     </div>
-
-                    {/* Jaringan BERSAMA + Konfirmasi WA Box */}
-                    <div className="p-3.5 rounded-xl bg-[#39FF14]/[0.07] border border-[#39FF14]/25 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                      <div className="text-xs text-[#C5D4C9] leading-relaxed">
-                        <b className="text-[#39FF14] block mb-0.5">
-                          {BRAND_INFO.atmNetwork} · Mesin EDC &amp; Mini ATM Konter
-                        </b>
-                        Melayani transaksi seluruh kartu ATM bank nasional &amp; bantuan langsung di konter Sukajadi dan Ciherang.
-                      </div>
-                      <button
-                        type="button"
-                        onClick={() => openWaWithTopic('mandiri-agen')}
-                        className="ojb-wa-cta !h-10 !px-3.5 text-xs shrink-0 cursor-pointer"
-                      >
-                        <MessageCircle className="w-3.5 h-3.5" />
-                        <span>Tanya Admin</span>
-                      </button>
+                    <div className="flex items-start gap-1.5 p-2 rounded-lg bg-black/30 border border-white/[0.04]">
+                      <Check className="w-3.5 h-3.5 text-[#39FF14] shrink-0 mt-0.5" />
+                      <span><b>PIN Masukkan Sendiri:</b> PIN wajib dijaga kerahasiaannya dan dimasukkan sendiri oleh nasabah.</span>
+                    </div>
+                    <div className="flex items-start gap-1.5 p-2 rounded-lg bg-black/30 border border-white/[0.04]">
+                      <Check className="w-3.5 h-3.5 text-[#39FF14] shrink-0 mt-0.5" />
+                      <span><b>Struk Bukti Transaksi:</b> Petugas menjelaskan hasil dan memberikan struk sebagai bukti transaksi.</span>
                     </div>
                   </div>
                 </div>
 
-                <p className="px-4 py-2.5 border-t border-white/[0.06] text-center font-mono-num text-[11px] text-[#687D6F]">
-                  Terdaftar resmi Agen Mandiri ({BRAND_INFO.mandiriAgentCode}) &amp; BRILink ({BRAND_INFO.brilinkAgentCode}) · {BRAND_INFO.atmNetwork}
-                </p>
+                {/* Kartu Identitas Resmi Keagenan (Terpisah Secara Faktual) */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  {/* Agen BRILink Card */}
+                  <div className="p-4 rounded-xl bg-[#070D0A] border border-[#39FF14]/25 flex flex-col justify-between gap-3">
+                    <div>
+                      <span className="text-xs font-semibold text-[#9EFF8A] block">
+                        Fasilitas Agen BRILink &amp; ATM Bersama BRI
+                      </span>
+                      <span className="font-mono-num text-xl sm:text-2xl font-extrabold text-[#39FF14] mt-1 block">
+                        ID Agen: {BRAND_INFO.brilinkAgentCode}
+                      </span>
+                      <span className="text-xs text-[#8EA394] mt-1 block leading-relaxed">
+                        Setor tunai, tarik tunai, BRIVA &amp; kartu jaringan ATM Bersama BRI yang didukung. *(ID resmi agen, bukan nomor rekening).*
+                      </span>
+                    </div>
+                    <div className="pt-2.5 border-t border-white/[0.06] flex items-center gap-1.5 text-xs font-semibold text-[#9EFF8A]">
+                      <ShieldCheck className="w-4 h-4 text-[#39FF14] shrink-0" />
+                      <span>Mesin EDC Agen BRILink</span>
+                    </div>
+                  </div>
+
+                  {/* Agen Mandiri Card */}
+                  <div className="p-4 rounded-xl bg-[#070D0A] border border-[#39FF14]/25 flex flex-col justify-between gap-3">
+                    <div>
+                      <span className="text-xs font-semibold text-[#9EFF8A] block">
+                        Fasilitas Mandiri Agen
+                      </span>
+                      <span className="font-mono-num text-xl sm:text-2xl font-extrabold text-[#39FF14] mt-1 block">
+                        ID Agen: {BRAND_INFO.mandiriAgentCode}
+                      </span>
+                      <span className="text-xs text-[#8EA394] mt-1 block leading-relaxed">
+                        Setor, tarik tunai &amp; transfer perbankan Bank Mandiri. *(ID resmi agen, bukan nomor rekening).*
+                      </span>
+                    </div>
+                    <div className="pt-2.5 border-t border-white/[0.06] flex items-center gap-1.5 text-xs font-semibold text-[#9EFF8A]">
+                      <ShieldCheck className="w-4 h-4 text-[#39FF14] shrink-0" />
+                      <span>Mesin EDC Mandiri Agen</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Layanan Pencairan Bantuan Sosial PKH, BPNT & Bantuan Pemerintah */}
+                <div className="p-4 sm:p-5 rounded-xl bg-[#070F0A] border border-[#39FF14]/30 space-y-2">
+                  <div className="flex items-center justify-between flex-wrap gap-2">
+                    <div className="flex items-center gap-2 text-xs sm:text-sm font-bold text-[#9EFF8A]">
+                      <ShieldCheck className="w-4 h-4 text-[#39FF14] shrink-0" />
+                      <span>Pencairan Bantuan Sosial PKH, BPNT &amp; Bantuan Pemerintah</span>
+                    </div>
+                    <span className="px-2.5 py-0.5 rounded text-[11px] font-semibold bg-[#39FF14]/15 text-[#39FF14] border border-[#39FF14]/30">
+                      Kartu Bantuan Kompatibel via EDC
+                    </span>
+                  </div>
+                  <p className="text-xs sm:text-sm text-[#D1DDD5] leading-relaxed">
+                    “NJR CELL membantu masyarakat melakukan transaksi tarik tunai bantuan sosial menggunakan kartu bantuan yang dapat diproses melalui fasilitas EDC. Petugas membantu menjelaskan dan mengarahkan transaksi. Pelanggan memeriksa nominal, memasukkan PIN sendiri, dan menerima struk setelah transaksi selesai.”
+                  </p>
+                  <p className="text-xs text-[#8EA394] leading-relaxed pt-2 border-t border-white/[0.06]">
+                    <b>Catatan:</b> NJR CELL bukan lembaga penyalur bantuan sosial pemerintah. NJR CELL membantu penerima manfaat melakukan transaksi tarik tunai menggunakan kartu bantuan yang kompatibel melalui fasilitas EDC keagenan.
+                  </p>
+                </div>
+
+                {/* Layanan EDC Terkonfirmasi Grid */}
+                <div className="p-4 sm:p-5 rounded-xl bg-[#08120C] border border-white/[0.08] space-y-3">
+                  <div className="flex items-center justify-between text-xs sm:text-sm font-bold text-white">
+                    <span>Layanan Mini ATM, Bantuan Sosial &amp; Perbankan EDC:</span>
+                    <span className="text-[#39FF14] text-xs font-semibold">Tersedia di 2 Cabang</span>
+                  </div>
+                  <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2 text-xs text-[#C5D4C9]">
+                    <span className="p-2 rounded-lg bg-black/40 border border-white/[0.05]">1. Tarik Tunai Kartu Bank</span>
+                    <span className="p-2 rounded-lg bg-black/40 border border-white/[0.05]">2. Setor Tunai Bank</span>
+                    <span className="p-2 rounded-lg bg-black/40 border border-white/[0.05]">3. Transfer Antarbank</span>
+                    <span className="p-2 rounded-lg bg-black/40 border border-white/[0.05]">4. Pencairan Bansos PKH &amp; BPNT</span>
+                    <span className="p-2 rounded-lg bg-black/40 border border-white/[0.05]">5. Pembayaran BRIVA</span>
+                    <span className="p-2 rounded-lg bg-black/40 border border-white/[0.05]">6. Bayar Cicilan Bank</span>
+                    <span className="p-2 rounded-lg bg-black/40 border border-white/[0.05]">7. Bayar Tagihan/PPOB</span>
+                    <span className="p-2 rounded-lg bg-black/40 border border-white/[0.05]">8. E-Wallet Tanpa Biaya Tambahan</span>
+                    <span className="p-2 rounded-lg bg-black/40 border border-white/[0.05] col-span-2 sm:col-span-1">9. Dukungan Kartu Debit GPN*</span>
+                  </div>
+                  <div className="pt-2.5 border-t border-white/[0.06] space-y-1 text-xs text-[#8EA394]">
+                    <p>
+                      * <b>Pemisahan Jaringan &amp; Fasilitas:</b> Layanan kartu BRI diproses melalui fasilitas Agen BRILink dan jaringan ATM Bersama BRI yang tersedia; layanan kartu Bank Mandiri diproses melalui fasilitas Mandiri Agen; kartu debit berlogo GPN dapat dicoba terlebih dahulu mengikuti kesesuaian jenis kartu dan status sistem bank saat transaksi.
+                    </p>
+                    <p>
+                      • <b>Bantuan Sosial:</b> Menggunakan kartu bantuan/KKS yang kompatibel dengan pendampingan petugas konter.
+                    </p>
+                    <p>
+                      • <b>E-Wallet:</b> Pencairan saldo berbagai e-wallet dilayani tanpa biaya tambahan.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Konfirmasi WA Box */}
+                <div className="p-4 rounded-xl bg-[#39FF14]/[0.07] border border-[#39FF14]/25 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                  <div className="text-xs sm:text-sm text-[#C5D4C9] leading-relaxed">
+                    <b className="text-[#39FF14] block mb-0.5">
+                      Konsultasi Transaksi &amp; Bantuan Petugas Konter
+                    </b>
+                    Kunjungi langsung cabang Ciherang (Banjarsari) atau Sukajadi (Pamarican), atau hubungi WhatsApp Admin untuk menanyakan layanan perbankan Anda.
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => openWaWithTopic('mandiri-agen')}
+                    className="ojb-wa-cta !h-10 !px-4 text-xs shrink-0 cursor-pointer"
+                  >
+                    <MessageCircle className="w-3.5 h-3.5" />
+                    <span>Tanya Admin</span>
+                  </button>
+                </div>
               </div>
             </div>
+
+            <p className="px-4 py-3 border-t border-white/[0.06] text-center font-mono-num text-xs text-[#687D6F]">
+              ID Agen BRILink: {BRAND_INFO.brilinkAgentCode} · ID Mandiri Agen: {BRAND_INFO.mandiriAgentCode} · Mini ATM Berbasis EDC
+            </p>
           </div>
 
           {/* Info Penting Bar */}
@@ -1414,7 +1493,7 @@ export function App() {
             SECTION: LOCATION SECTION (#lokasi-outlet)
             BOTH SUKAJADI & CIHERANG CARDS HAVE THEIR OWN DEDICATED MAP WINDOW!
         =================================================================== */}
-        <section id="lokasi-outlet" className="ojb-section" aria-labelledby="lokasi-title">
+        <section id="lokasi-outlet" className="ojb-section scroll-mt-20" aria-labelledby="lokasi-title">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
             <div>
               <p className="ojb-eyebrow">
@@ -1431,15 +1510,17 @@ export function App() {
             </div>
           </div>
 
-          {/* 2 Outlet Cards — EACH with its own Map Window (Sukajadi Map + Ciherang Map both visible!) */}
+          {/* 2 Outlet Cards — EACH with its own dedicated anchor (#outlet-sukajadi & #outlet-ciherang) */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {OUTLETS.map((outlet) => {
               const mapMode = outletMapModes[outlet.id] || 'pin';
               const embedSrc = OUTLET_EMBED_URLS[outlet.id] || OUTLET_EMBED_URLS.sukajadi;
+              const outletAnchorId = `outlet-${outlet.id}`;
               return (
                 <div
                   key={outlet.id}
-                  className="rounded-[24px] glass-surface border border-[#39FF14]/30 hover:border-[#39FF14]/65 shadow-[0_24px_55px_-28px_rgba(0,0,0,0.95)] overflow-hidden flex flex-col justify-between transition-all"
+                  id={outletAnchorId}
+                  className="rounded-[24px] glass-surface border border-[#39FF14]/30 hover:border-[#39FF14]/65 shadow-[0_24px_55px_-28px_rgba(0,0,0,0.95)] overflow-hidden flex flex-col justify-between transition-all scroll-mt-24"
                 >
                   <div>
                     {/* Dedicated Map Scene Bar for This Outlet */}
@@ -1484,7 +1565,7 @@ export function App() {
                       </div>
                     </div>
 
-                    {/* Dedicated Map Display for This Outlet (Both Sukajadi & Ciherang have their own map!) */}
+                    {/* Dedicated Map Display for This Outlet */}
                     <div className="relative w-full h-[220px] sm:h-[260px] bg-[#070C09] border-b border-white/[0.08] overflow-hidden group">
                       {mapMode === 'pin' ? (
                         <>
@@ -1567,6 +1648,17 @@ export function App() {
                           </span>
                         ))}
                       </div>
+
+                      {outlet.id === 'ciherang' && (
+                        <p className="mt-3 pt-3 border-t border-white/[0.06] text-[11px] text-[#8EA394] leading-relaxed">
+                          <b>Layanan Utama Ciherang &amp; Banjarsari:</b> Tarik Tunai PKH Banjarsari, Pencairan BPNT Ciherang, Tarik Tunai Bantuan Sosial Banjarsari, Mini ATM EDC BRILink &amp; Mandiri Agen.
+                        </p>
+                      )}
+                      {outlet.id === 'sukajadi' && (
+                        <p className="mt-3 pt-3 border-t border-white/[0.06] text-[11px] text-[#8EA394] leading-relaxed">
+                          <b>Layanan Utama Sukajadi &amp; Pamarican:</b> Pencairan PKH Pamarican, Tarik Tunai BPNT Sukajadi, Tarik Tunai Bantuan Sosial Pamarican, Mini ATM EDC BRILink &amp; Mandiri Agen.
+                        </p>
+                      )}
                     </div>
                   </div>
 

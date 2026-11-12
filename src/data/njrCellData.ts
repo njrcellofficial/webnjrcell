@@ -388,77 +388,122 @@ export const OUTLETS: OutletInfo[] = [
     id: 'sukajadi',
     code: '01. OUTLET SUKAJADI',
     name: 'NJR CELL Sukajadi',
-    shortArea: 'Kecamatan Pamarican, Kab. Ciamis',
-    address: 'Desa Sukajadi RT 006 RW 002, Kecamatan Pamarican, Kabupaten Ciamis, Jawa Barat',
+    shortArea: 'Desa Sukajadi, Kec. Pamarican, Kab. Ciamis',
+    address: 'RT 006 RW 002, Desa Sukajadi, Kecamatan Pamarican, Kabupaten Ciamis, Jawa Barat',
     landmarkNote: 'Patokan Lokasi: Di sekitar / samping Sekolah MAN 4 Ciamis',
     whatsappNumberDisplay: '0853-2000-0303',
     whatsappUrl:
-      'https://api.whatsapp.com/send/?phone=6285320000303&text=Halo%20NJR%20CELL%20Sukajadi%2C%20saya%20ingin%20bertanya%20mengenai%20layanan',
+      'https://api.whatsapp.com/send/?phone=6285320000303&text=Halo%20NJR%20CELL%20Sukajadi%2C%20saya%20ingin%20bertanya%20mengenai%20layanan%20Mini%20ATM',
     mapsUrl: 'https://maps.app.goo.gl/kwNbie566DpopYBGA',
     mapPreviewImage: '/img/njrsukajadi.png',
     servicesAvailable: [
-      'Transfer Bank & Tarik Tunai (Jaringan BERSAMA)',
-      'Terdaftar Resmi Agen Mandiri (Kode: 2407196) & BRILink (Kode: 12400836)',
-      'Pulsa, Paket Data, Kartu Perdana & Voucher Fisik',
-      'Token PLN & Pembayaran Tagihan PPOB',
-      'Pelindung Layar Hydrogel, Garskin & Aksesori HP',
-      'Minuman Dingin, Es Krim & Produk Harian Konter',
+      'Layanan Mini ATM EDC dengan Bantuan Petugas',
+      'Pencairan Bantuan Sosial PKH, BPNT & Bantuan Pemerintah',
+      'Tarik Tunai Kartu ATM/Debit Bank',
+      'Setor Tunai ke Rekening Bank',
+      'Transfer Antarbank Nasional (Bukti Struk)',
+      'Pembayaran Tagihan Listrik, PDAM & PPOB Lengkap',
+      'Pembayaran BRIVA (BRI Virtual Account)',
+      'Pembayaran Cicilan Bank & Pembiayaan yang Didukung',
+      'Pencairan Saldo Berbagai E-Wallet Tanpa Biaya Tambahan',
+      'Fasilitas Agen BRILink, ATM Bersama BRI & Mandiri Agen',
+      'Pulsa, Paket Data, Hydrogel, Garskin & Aksesori HP',
     ],
   },
   {
     id: 'ciherang',
     code: '02. OUTLET CIHERANG',
     name: 'NJR CELL Ciherang',
-    shortArea: 'Kecamatan Banjarsari, Kab. Ciamis',
+    shortArea: 'Desa Ciherang, Kec. Banjarsari, Kab. Ciamis',
     address:
-      'Jl. Pangandaran No. 84, RT 05 RW 01, Desa Ciherang, Kec. Banjarsari, Kab. Ciamis, Jawa Barat (Dekat SD 1 Ciherang)',
+      'Jl. Pangandaran No. 84, RT 05 RW 01, Desa Ciherang, Kecamatan Banjarsari, Kabupaten Ciamis, Jawa Barat (Dekat SD 1 Ciherang)',
     landmarkNote: 'Patokan Lokasi: Dekat SD 1 Ciherang, Jalur Jl. Pangandaran No. 84',
     whatsappNumberDisplay: '0831-2000-0303',
     whatsappUrl:
-      'https://api.whatsapp.com/send/?phone=6283120000303&text=Halo%20NJR%20CELL%20Ciherang%2C%20saya%20ingin%20bertanya%20mengenai%20layanan',
+      'https://api.whatsapp.com/send/?phone=6283120000303&text=Halo%20NJR%20CELL%20Ciherang%2C%20saya%20ingin%20bertanya%20mengenai%20layanan%20Mini%20ATM',
     mapsUrl: 'https://maps.app.goo.gl/m4d9JoxcXCYds6ep6',
     mapPreviewImage: '/img/njrciherang.png',
     servicesAvailable: [
-      'Transfer Bank & Tarik Tunai (Jaringan BERSAMA)',
-      'Terdaftar Resmi Agen Mandiri (Kode: 2407196) & BRILink (Kode: 12400836)',
-      'Pulsa, Paket Data, Kartu Perdana & Voucher Fisik',
-      'Token PLN & Pembayaran Tagihan PPOB',
-      'Pelindung Layar Hydrogel, Garskin Custom & Aksesori HP',
-      'Minuman Dingin, Es Krim & Produk Harian Konter',
+      'Layanan Mini ATM EDC dengan Bantuan Petugas',
+      'Pencairan Bantuan Sosial PKH, BPNT & Bantuan Pemerintah',
+      'Tarik Tunai Kartu ATM/Debit Bank',
+      'Setor Tunai ke Rekening Bank',
+      'Transfer Antarbank Nasional (Bukti Struk)',
+      'Pembayaran Tagihan Listrik, PDAM & PPOB Lengkap',
+      'Pembayaran BRIVA (BRI Virtual Account)',
+      'Pembayaran Cicilan Bank & Pembiayaan yang Didukung',
+      'Pencairan Saldo Berbagai E-Wallet Tanpa Biaya Tambahan',
+      'Fasilitas Agen BRILink, ATM Bersama BRI & Mandiri Agen',
+      'Pulsa, Paket Data, Hydrogel, Garskin & Aksesori HP',
     ],
   },
 ];
 
 export const FAQ_ITEMS = [
   {
-    question: 'Saya kurang paham cara transfer atau bayar lewat HP, apakah bisa dibantu langsung?',
+    question: 'Apa perbedaan layanan Mini ATM NJR CELL dengan ATM konvensional?',
     answer:
-      'Tentu bisa! Anda cukup datang langsung ke konter resmi NJR CELL (NJRCELL) cabang Sukajadi (Pamarican, sekitar MAN 4 Ciamis) atau cabang Ciherang (Banjarsari, dekat SD 1 Ciherang). Petugas kami akan membantu proses transfer, tarik tunai, layanan Agen Mandiri (Kode: 2407196), BRILink (Kode: 12400836), Jaringan BERSAMA, pengisian kuota, maupun pembayaran tagihan dari awal sampai selesai dengan ramah dan jelas.',
+      'Di mesin ATM konvensional, nasabah harus memilih dan mengoperasikan banyak menu transaksi sendiri di layar mesin. Di NJR CELL, layanan Mini ATM menggunakan perangkat EDC resmi keagenan yang dioperasikan dengan bantuan petugas konter. Anda diarahkan memilih transaksi yang tepat, dapat memeriksa rincian transaksi sebelum dilanjutkan, memasukkan PIN sendiri secara rahasia, serta mendapatkan penjelasan hasil dan struk sebagai bukti transaksi. Layanan ini sangat memudahkan nasabah yang belum terbiasa atau merasa ragu menghadapi menu mesin ATM mandiri.',
   },
   {
-    question: 'Bagaimana prosedur tarik tunai dari rekening atau e-wallet di NJR CELL?',
+    question: 'Apakah pelanggan dibantu oleh petugas saat transaksi?',
     answer:
-      'Anda dapat melakukan transfer ke nomor rekening resmi NJR CELL (Mandiri, BRI, SeaBank) atau e-wallet resmi (DANA, ShopeePay) atas nama AMIR NURJAMAN, atau scan QRIS resmi NJR CELL (NMID: ID1020035674883). Simpan bukti transfer dan tunjukkan kepada petugas konter. Uang tunai wajib dihitung bersama-sama di tempat saat transaksi dilakukan.',
+      'Ya. Petugas NJR CELL membantu menjelaskan dan mengarahkan jenis transaksi yang Anda butuhkan (tarik tunai, setor tunai, transfer, atau pembayaran) serta menginput data transaksi ke perangkat EDC secara transparan di depan Anda. Sebelum transaksi dilanjutkan, pelanggan dapat memeriksa kembali jenis transaksi dan nominalnya.',
   },
   {
-    question: 'Apakah bisa beli pulsa, paket data, dan token listrik tengah malam (24 jam)?',
+    question: 'Apakah pelanggan harus memasukkan PIN sendiri?',
     answer:
-      'Bisa. Untuk transaksi mandiri 24 jam, Anda dapat menggunakan halaman resmi Buylink NJR CELL (https://buylink.id/njrcell) selama sistem dan koneksi mitra berjalan normal. Untuk layanan fisik seperti tarik tunai, pasang hydrogel, atau kartu perdana, mengikuti jam operasional konter.',
+      'Ya, wajib. Demi keamanan rekening nasabah, PIN tidak boleh diberitahukan kepada siapa pun, termasuk petugas konter. Petugas tidak pernah meminta atau memasukkan PIN Anda. Mesin EDC akan diserahkan kepada Anda agar Anda memasukkan PIN sendiri secara rahasia langsung pada perangkat EDC.',
   },
   {
-    question: 'Apakah pelindung layar hydrogel tersedia untuk semua tipe HP?',
+    question: 'Apakah pelanggan mendapatkan struk setelah transaksi?',
     answer:
-      'Hydrogel dan garskin custom di NJR CELL dipotong menggunakan mesin khusus sehingga tersedia untuk berbagai merk dan tipe HP (termasuk tipe HP yang jarang ditemukan tempered glass-nya). Anda dapat mengecek katalog di halaman Hydrogel kami atau chat WhatsApp outlet terdekat untuk memastikan ketersediaan.',
+      'Ya. Setelah transaksi selesai diproses oleh perangkat EDC, petugas akan langsung memberikan kertas struk cetak resmi dari mesin EDC sebagai bukti transaksi.',
   },
   {
-    question: 'Bagaimana jika ada kendala transaksi atau saldo belum masuk?',
+    question: 'Apakah kartu ATM/debit berlogo GPN atau kartu ATM Bersama bisa digunakan?',
     answer:
-      'Jangan khawatir. Simpan bukti transfer atau tangkapan layar (screenshot) transaksi Anda, lalu hubungi WhatsApp resmi NJR CELL maksimal dalam waktu 1×24 jam. Kami akan segera membantu pengecekan ke sistem mitra.',
+      'Pelanggan dapat mencoba transaksi terlebih dahulu di perangkat EDC kami. Perangkat EDC NJR CELL mendukung berbagai jenis kartu, namun keberhasilan transaksi tetap mengikuti dukungan jenis kartu, kebijakan bank penerbit kartu, ketersediaan jaringan, dan kondisi sistem perbankan saat transaksi berlangsung.',
   },
   {
-    question: 'Apakah NJR CELL melayani kasbon atau bayar di akhir (hutang)?',
+    question: 'Apakah bisa tarik tunai menggunakan kartu Bank Mandiri dan Bank BRI?',
     answer:
-      'Pada prinsipnya seluruh layanan NJR CELL bersifat tunai / bayar langsung (cash) agar silaturahmi tetap terjaga. Sesuai Syarat & Ketentuan resmi, pembayaran di akhir hanya berlaku bagi pelanggan yang telah mendapat izin khusus dengan menyerahkan jaminan barang senilai nominal transaksi serta identitas tertulis, dan wajib dilunasi sebelum konter tutup (pukul 22:00 WIB) di hari yang sama.',
+      'Bisa, diproses sesuai dukungan fasilitas dan jaringan masing-masing: untuk kartu Bank BRI, transaksi dilayani melalui fasilitas Agen BRILink (ID Agen: 12400836) serta jaringan ATM Bersama yang tersedia. Untuk kartu Bank Mandiri, transaksi dilayani melalui fasilitas Mandiri Agen (ID Agen: 2407196) sesuai dukungan perangkat dan sistem bank yang aktif.',
+  },
+  {
+    question: 'Apakah NJR CELL melayani pencairan bantuan sosial PKH, BPNT, atau bantuan pemerintah lainnya?',
+    answer:
+      'NJR CELL bukan lembaga penyalur bantuan sosial pemerintah. NJR CELL membantu penerima manfaat melakukan transaksi tarik tunai menggunakan kartu bantuan yang kompatibel melalui fasilitas EDC keagenan di cabang Ciherang (Banjarsari) dan cabang Sukajadi (Pamarican). Petugas membantu menjelaskan dan mengarahkan jenis transaksi. Pelanggan memeriksa nominal, memasukkan PIN sendiri, dan menerima struk setelah transaksi selesai.',
+  },
+  {
+    question: 'Apakah semua jenis kartu bantuan sosial pasti bisa dicairkan di NJR CELL?',
+    answer:
+      'Tidak semua kartu bantuan sosial dapat diproses langsung. Keberhasilan transaksi bergantung pada kompatibilitas kartu (KKS), bank penerbit kartu, ketersediaan saldo/kuota bantuan dari pemerintah, serta status jaringan mesin EDC pada saat transaksi dilakukan. Pelanggan dipersilakan mencoba transaksi di konter NJR CELL terdekat.',
+  },
+  {
+    question: 'Apakah bisa mencairkan saldo e-wallet di NJR CELL? Apakah ada biaya tambahan?',
+    answer:
+      'Ya, NJR CELL melayani pencairan saldo berbagai e-wallet tanpa biaya tambahan. Petugas kami akan membantu memandu proses transaksi secara jelas di konter dan uang tunai dihitung bersama di depan Anda saat transaksi berlangsung.',
+  },
+  {
+    question: 'Apakah bisa transfer antarbank di NJR CELL?',
+    answer:
+      'Bisa. Kami melayani transfer uang ke berbagai rekening bank di seluruh Indonesia melalui perangkat EDC agen resmi. Petugas akan memastikan nomor rekening dan nama pemilik rekening tujuan Anda sudah sesuai sebelum transaksi dijalankan, lalu memberikan struk sebagai bukti transaksi.',
+  },
+  {
+    question: 'Apakah bisa membayar tagihan BRIVA (BRI Virtual Account) dan cicilan bank?',
+    answer:
+      'Bisa. Pembayaran kode BRIVA diproses melalui sistem EDC BRILink resmi dan statusnya mengikuti respons sistem bank. Kami juga melayani pembayaran cicilan bank dan angsuran pembiayaan resmi yang didukung pada sistem pembayaran keagenan kami.',
+  },
+  {
+    question: 'Apa fungsi nomor 12400836 dan 2407196 yang tercantum pada NJR CELL?',
+    answer:
+      'Nomor 12400836 adalah ID Agen resmi untuk layanan Agen BRILink, dan 2407196 adalah ID Agen resmi untuk layanan Mandiri Agen. Kedua nomor tersebut merupakan nomor identitas resmi keagenan perbankan NJR CELL, bukan nomor rekening tujuan transfer dan bukan nomor kontak WhatsApp.',
+  },
+  {
+    question: 'Bagaimana cara menemukan lokasi cabang NJR CELL?',
+    answer:
+      'NJR CELL memiliki 2 cabang di Kabupaten Ciamis: Cabang Ciherang beralamat di Jl. Pangandaran No. 84 (dekat SD 1 Ciherang), Desa Ciherang, Kecamatan Banjarsari (WA: 0831-2000-0303); dan Cabang Sukajadi beralamat di RT 006 RW 002 (sekitar MAN 4 Ciamis), Desa Sukajadi, Kecamatan Pamarican (WA: 0853-2000-0303). Kedua lokasi dilengkapi petunjuk arah Google Maps yang dapat diakses langsung pada halaman ini.',
   },
 ];
 
@@ -784,6 +829,32 @@ export const SERVICE_CATALOG_ITEMS: ServiceCatalogItem[] = [
     actionTarget: 'mandiri-agen',
     actionLabel: 'Tanya Layanan Mini ATM',
     iconName: 'CreditCard',
+  },
+  {
+    id: 'fin-bansos-pkh-bpnt',
+    categoryId: 'keuangan',
+    categoryLabel: 'Keuangan',
+    title: 'Pencairan Bantuan Sosial PKH, BPNT & Bantuan Pemerintah',
+    description:
+      'NJR CELL membantu masyarakat melakukan transaksi tarik tunai bantuan sosial menggunakan kartu bantuan yang dapat diproses melalui fasilitas EDC. Petugas membantu menjelaskan dan mengarahkan transaksi. Pelanggan memeriksa nominal, memasukkan PIN sendiri, dan menerima struk setelah transaksi selesai.',
+    availability: 'Konter Sukajadi & Ciherang · Kartu Bantuan Kompatibel',
+    keywords: [
+      'pkh',
+      'bpnt',
+      'bantuan sosial',
+      'bansos',
+      'kks',
+      'tarik tunai pkh',
+      'pencairan bpnt',
+      'bantuan pemerintah',
+      'kartu kks',
+      'tarik tunai bansos banjarsari',
+      'pencairan pkh pamarican',
+    ],
+    actionType: 'wa',
+    actionTarget: 'tarik-tunai',
+    actionLabel: 'Tanya Pencairan Bansos',
+    iconName: 'Banknote',
   },
 
   // B. DIGITAL (6 Layanan = 2 Baris Penuh Grid 3 Kolom)
