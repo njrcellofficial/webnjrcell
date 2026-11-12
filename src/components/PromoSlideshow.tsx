@@ -386,31 +386,31 @@ export const PromoSlideshow: React.FC<PromoSlideshowProps> = ({
                 </div>
 
                 <div className="space-y-4">
-                  <div className="flex flex-wrap items-center gap-3">
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-2.5 w-full">
                     <a
                       href={safeTargetUrl}
                       target={safeTargetUrl.startsWith('#') ? undefined : '_blank'}
                       rel={safeTargetUrl.startsWith('#') ? undefined : 'noopener noreferrer'}
-                      className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-[#39FF14] hover:bg-[#2ee00e] text-[#070A08] font-bold text-sm transition-colors whitespace-nowrap shrink-0"
+                      className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-[#39FF14] hover:bg-[#2ee00e] text-[#070A08] font-bold text-sm transition-colors w-full sm:w-auto text-center truncate"
                     >
-                      <span>{buttonLabel}</span>
-                      <ExternalLink className="w-4 h-4" />
+                      <span className="truncate">{buttonLabel}</span>
+                      <ExternalLink className="w-4 h-4 shrink-0" />
                     </a>
 
                     {filteredSlides.length > 1 && (
                       <button
                         type="button"
                         onClick={() => setIsPaused((p) => !p)}
-                        className="inline-flex items-center gap-2 px-4 py-3 rounded-xl bg-white/5 hover:bg-white/10 text-[#F3F7F4] text-xs font-medium border border-white/10 transition-colors whitespace-nowrap shrink-0 cursor-pointer"
+                        className="inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-white/5 hover:bg-white/10 text-[#F3F7F4] text-xs font-medium border border-white/10 transition-colors w-full sm:w-auto text-center cursor-pointer"
                       >
                         {isPaused ? (
                           <>
-                            <Play className="w-3.5 h-3.5 text-[#39FF14]" />
+                            <Play className="w-3.5 h-3.5 text-[#39FF14] shrink-0" />
                             <span>Lanjutkan Slide</span>
                           </>
                         ) : (
                           <>
-                            <Pause className="w-3.5 h-3.5 text-[#39FF14]" />
+                            <Pause className="w-3.5 h-3.5 text-[#39FF14] shrink-0" />
                             <span>Jeda Otomatis</span>
                           </>
                         )}

@@ -387,8 +387,8 @@ export function App() {
               aria-label="Cari Layanan Cepat (Ctrl + K)"
             >
               <Search className="w-4 h-4 text-[#39FF14] shrink-0" />
-              <span className="sm:hidden font-semibold text-white">Cari</span>
-              <span className="hidden sm:inline">Cari layanan</span>
+              <span className="hidden md:inline">Cari layanan</span>
+              <span className="hidden min-[480px]:inline md:hidden font-semibold text-white">Cari</span>
               <kbd className="ojb-kbd">Ctrl K</kbd>
             </button>
 
@@ -887,7 +887,7 @@ export function App() {
             6-CARD SYMMETRICAL CATEGORY OVERVIEW GRID (3x2 on Desktop, 2x3 on Tablet)
             (Zero empty slots on any screen size!)
         =================================================================== */}
-        <section className="max-w-[1360px] mx-auto px-[clamp(18px,4.2vw,56px)] pb-6">
+        <section className="max-w-[1360px] mx-auto px-[var(--gutter)] pb-6">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-5">
             <div>
               <span className="ojb-eyebrow !mb-1">
@@ -1179,7 +1179,7 @@ export function App() {
                           <button
                             type="button"
                             onClick={() => handleCopyAccount(acc.rawNumber, acc.id)}
-                            className={`px-4 py-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 shrink-0 transition-all cursor-pointer ${
+                            className={`w-full sm:w-auto px-4 py-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 shrink-0 transition-all cursor-pointer ${
                               isCopied
                                 ? 'bg-[#39FF14] text-[#041006]'
                                 : 'bg-white/[0.07] hover:bg-[#39FF14] text-white hover:text-[#041006] border border-white/15'
@@ -1420,16 +1420,43 @@ export function App() {
                     <span>Layanan Mini ATM, Bantuan Sosial &amp; Perbankan EDC:</span>
                     <span className="text-[#39FF14] text-xs font-semibold">Tersedia di 2 Cabang</span>
                   </div>
-                  <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2 text-xs text-[#C5D4C9]">
-                    <span className="p-2 rounded-lg bg-black/40 border border-white/[0.05]">1. Tarik Tunai Kartu Bank</span>
-                    <span className="p-2 rounded-lg bg-black/40 border border-white/[0.05]">2. Setor Tunai Bank</span>
-                    <span className="p-2 rounded-lg bg-black/40 border border-white/[0.05]">3. Transfer Antarbank</span>
-                    <span className="p-2 rounded-lg bg-black/40 border border-white/[0.05]">4. Pencairan Bansos PKH &amp; BPNT</span>
-                    <span className="p-2 rounded-lg bg-black/40 border border-white/[0.05]">5. Pembayaran BRIVA</span>
-                    <span className="p-2 rounded-lg bg-black/40 border border-white/[0.05]">6. Bayar Cicilan Bank</span>
-                    <span className="p-2 rounded-lg bg-black/40 border border-white/[0.05]">7. Bayar Tagihan/PPOB</span>
-                    <span className="p-2 rounded-lg bg-black/40 border border-white/[0.05]">8. E-Wallet Tanpa Biaya Tambahan</span>
-                    <span className="p-2 rounded-lg bg-black/40 border border-white/[0.05] col-span-2 sm:col-span-1">9. Dukungan Kartu Debit GPN*</span>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2 text-xs text-[#C5D4C9]">
+                    <span className="p-2.5 rounded-lg bg-black/40 border border-white/[0.05] flex items-center gap-2">
+                      <ShieldCheck className="w-3.5 h-3.5 text-[#39FF14] shrink-0" />
+                      <span>1. Tarik Tunai Kartu Bank</span>
+                    </span>
+                    <span className="p-2.5 rounded-lg bg-black/40 border border-white/[0.05] flex items-center gap-2">
+                      <ShieldCheck className="w-3.5 h-3.5 text-[#39FF14] shrink-0" />
+                      <span>2. Setor Tunai Bank</span>
+                    </span>
+                    <span className="p-2.5 rounded-lg bg-black/40 border border-white/[0.05] flex items-center gap-2">
+                      <ShieldCheck className="w-3.5 h-3.5 text-[#39FF14] shrink-0" />
+                      <span>3. Transfer Antarbank</span>
+                    </span>
+                    <span className="p-2.5 rounded-lg bg-black/40 border border-white/[0.05] flex items-center gap-2">
+                      <ShieldCheck className="w-3.5 h-3.5 text-[#39FF14] shrink-0" />
+                      <span>4. Pencairan Bansos PKH &amp; BPNT</span>
+                    </span>
+                    <span className="p-2.5 rounded-lg bg-black/40 border border-white/[0.05] flex items-center gap-2">
+                      <ShieldCheck className="w-3.5 h-3.5 text-[#39FF14] shrink-0" />
+                      <span>5. Pembayaran BRIVA</span>
+                    </span>
+                    <span className="p-2.5 rounded-lg bg-black/40 border border-white/[0.05] flex items-center gap-2">
+                      <ShieldCheck className="w-3.5 h-3.5 text-[#39FF14] shrink-0" />
+                      <span>6. Bayar Cicilan Bank</span>
+                    </span>
+                    <span className="p-2.5 rounded-lg bg-black/40 border border-white/[0.05] flex items-center gap-2">
+                      <ShieldCheck className="w-3.5 h-3.5 text-[#39FF14] shrink-0" />
+                      <span>7. Bayar Tagihan/PPOB</span>
+                    </span>
+                    <span className="p-2.5 rounded-lg bg-black/40 border border-white/[0.05] flex items-center gap-2">
+                      <ShieldCheck className="w-3.5 h-3.5 text-[#39FF14] shrink-0" />
+                      <span>8. E-Wallet Tanpa Biaya Tambahan</span>
+                    </span>
+                    <span className="p-2.5 rounded-lg bg-black/40 border border-white/[0.05] flex items-center gap-2 col-span-1 sm:col-span-2 md:col-span-1">
+                      <ShieldCheck className="w-3.5 h-3.5 text-[#39FF14] shrink-0" />
+                      <span>9. Dukungan Kartu Debit GPN*</span>
+                    </span>
                   </div>
                   <div className="pt-2.5 border-t border-white/[0.06] space-y-1 text-xs text-[#8EA394]">
                     <p>

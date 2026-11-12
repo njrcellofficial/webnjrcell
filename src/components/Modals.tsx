@@ -53,15 +53,15 @@ export const WhatsAppSelectorModal: React.FC<WhatsAppModalProps> = ({
 
   return (
     <div
-      className="fixed inset-0 z-[110] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
+      className="fixed inset-0 z-[110] flex items-center justify-center p-3 sm:p-4 bg-black/80 backdrop-blur-sm"
       role="dialog"
       aria-modal="true"
       aria-labelledby="wa-modal-title"
     >
       <div className="w-full max-w-xl rounded-2xl bg-[#111613] border border-white/15 shadow-2xl overflow-hidden">
-        <div className="flex items-center justify-between px-6 py-4 border-b border-white/10 bg-[#0D110F]">
+        <div className="flex items-center justify-between px-4 sm:px-6 py-3.5 sm:py-4 border-b border-white/10 bg-[#0D110F]">
           <div>
-            <h3 id="wa-modal-title" className="text-lg font-bold text-[#F3F7F4]">
+            <h3 id="wa-modal-title" className="text-base sm:text-lg font-bold text-[#F3F7F4]">
               Hubungi WhatsApp Resmi NJR CELL
             </h3>
             <p className="text-xs text-[#A3B3A8]">
@@ -78,7 +78,7 @@ export const WhatsAppSelectorModal: React.FC<WhatsAppModalProps> = ({
           </button>
         </div>
 
-        <div className="p-6 space-y-5 max-h-[80vh] overflow-y-auto">
+        <div className="p-4 sm:p-6 space-y-5 max-h-[80vh] overflow-y-auto">
           {/* Step 1: Select Topic */}
           <div>
             <label className="block text-xs font-semibold text-[#39FF14] mb-2">
@@ -196,17 +196,17 @@ export const TermsModal: React.FC<TermsModalProps> = ({ isOpen, onClose }) => {
 
   return (
     <div
-      className="fixed inset-0 z-[110] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
+      className="fixed inset-0 z-[110] flex items-center justify-center p-3 sm:p-4 bg-black/80 backdrop-blur-sm"
       role="dialog"
       aria-modal="true"
       aria-labelledby="terms-modal-title"
     >
       <div className="w-full max-w-3xl rounded-2xl bg-[#111613] border border-white/15 shadow-2xl overflow-hidden flex flex-col max-h-[85vh]">
-        <div className="flex items-center justify-between px-6 py-4 border-b border-white/10 bg-[#0D110F]">
+        <div className="flex items-center justify-between px-4 sm:px-6 py-3.5 sm:py-4 border-b border-white/10 bg-[#0D110F]">
           <div className="flex items-center gap-2.5">
-            <FileText className="w-5 h-5 text-[#39FF14]" />
+            <FileText className="w-5 h-5 text-[#39FF14] shrink-0" />
             <div>
-              <h3 id="terms-modal-title" className="text-lg font-bold text-[#F3F7F4]">
+              <h3 id="terms-modal-title" className="text-base sm:text-lg font-bold text-[#F3F7F4]">
                 Syarat & Ketentuan Resmi NJR CELL
               </h3>
               <p className="text-xs text-[#A3B3A8]">
@@ -224,7 +224,7 @@ export const TermsModal: React.FC<TermsModalProps> = ({ isOpen, onClose }) => {
           </button>
         </div>
 
-        <div className="p-6 overflow-y-auto space-y-5 text-sm text-[#D1DDD5]">
+        <div className="p-4 sm:p-6 overflow-y-auto space-y-5 text-sm text-[#D1DDD5]">
           <p className="text-xs sm:text-sm text-[#A3B3A8]">
             Dengan menggunakan layanan NJR CELL (baik online maupun langsung di konter Sukajadi dan Ciherang), pelanggan menyetujui syarat dan ketentuan berikut:
           </p>
@@ -251,14 +251,14 @@ export const TermsModal: React.FC<TermsModalProps> = ({ isOpen, onClose }) => {
           </div>
         </div>
 
-        <div className="px-6 py-4 border-t border-white/10 bg-[#0D110F] flex items-center justify-between">
-          <span className="text-xs text-[#A3B3A8]">
-            © NJR CELL — Dokumen Ketentuan Layanan Pelanggan
+        <div className="px-4 sm:px-6 py-3 sm:py-4 border-t border-white/10 bg-[#0D110F] flex items-center justify-between gap-3">
+          <span className="text-xs text-[#A3B3A8] truncate">
+            © NJR CELL — Dokumen Ketentuan Layanan
           </span>
           <button
             type="button"
             onClick={onClose}
-            className="px-5 py-2 rounded-xl bg-[#39FF14] text-[#070A08] font-bold text-xs hover:bg-[#2ee00e] transition-colors cursor-pointer"
+            className="px-4 sm:px-5 py-2 rounded-xl bg-[#39FF14] text-[#070A08] font-bold text-xs hover:bg-[#2ee00e] transition-colors cursor-pointer shrink-0"
           >
             Saya Mengerti
           </button>
@@ -278,17 +278,17 @@ export const AuditModal: React.FC<AuditModalProps> = ({ isOpen, onClose }) => {
 
   return (
     <div
-      className="fixed inset-0 z-[130] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
+      className="fixed inset-0 z-[130] flex items-center justify-center p-3 sm:p-4 bg-black/80 backdrop-blur-sm"
       role="dialog"
       aria-modal="true"
       aria-labelledby="audit-modal-title"
     >
       <div className="w-full max-w-4xl rounded-2xl bg-[#111613] border border-white/15 shadow-2xl overflow-hidden flex flex-col max-h-[88vh]">
-        <div className="flex items-center justify-between px-6 py-4 border-b border-white/10 bg-[#0D110F]">
+        <div className="flex items-center justify-between px-4 sm:px-6 py-3.5 sm:py-4 border-b border-white/10 bg-[#0D110F]">
           <div className="flex items-center gap-2.5">
-            <ClipboardCheck className="w-5 h-5 text-[#39FF14]" />
+            <ClipboardCheck className="w-5 h-5 text-[#39FF14] shrink-0" />
             <div>
-              <h3 id="audit-modal-title" className="text-lg font-bold text-[#F3F7F4]">
+              <h3 id="audit-modal-title" className="text-base sm:text-lg font-bold text-[#F3F7F4]">
                 Panel Audit & Status Verifikasi (Siap Launching)
               </h3>
               <p className="text-xs text-[#A3B3A8]">
@@ -306,7 +306,7 @@ export const AuditModal: React.FC<AuditModalProps> = ({ isOpen, onClose }) => {
           </button>
         </div>
 
-        <div className="p-6 overflow-y-auto space-y-6 text-sm">
+        <div className="p-4 sm:p-6 overflow-y-auto space-y-6 text-sm">
           {/* Confirmed Updates */}
           <div>
             <h4 className="text-sm font-bold text-[#F3F7F4] mb-3 flex items-center gap-2">
@@ -370,14 +370,14 @@ export const AuditModal: React.FC<AuditModalProps> = ({ isOpen, onClose }) => {
           </div>
         </div>
 
-        <div className="px-6 py-4 border-t border-white/10 bg-[#0D110F] flex items-center justify-between">
-          <span className="text-xs text-[#A3B3A8]">
-            Website utama (njrcell.web.id) & repo utama tetap aman tidak tersentuh.
+        <div className="px-4 sm:px-6 py-3 sm:py-4 border-t border-white/10 bg-[#0D110F] flex items-center justify-between gap-3">
+          <span className="text-xs text-[#A3B3A8] truncate">
+            Website utama &amp; repo tetap aman.
           </span>
           <button
             type="button"
             onClick={onClose}
-            className="px-5 py-2 rounded-xl bg-[#39FF14] text-[#070A08] font-bold text-xs hover:bg-[#2ee00e] transition-colors cursor-pointer"
+            className="px-4 sm:px-5 py-2 rounded-xl bg-[#39FF14] text-[#070A08] font-bold text-xs hover:bg-[#2ee00e] transition-colors cursor-pointer shrink-0"
           >
             Tutup Panel Audit
           </button>
